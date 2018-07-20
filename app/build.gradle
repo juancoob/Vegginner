@@ -58,6 +58,7 @@ dependencies {
 
     // Tests
     testImplementation "junit:junit:$junit_version"
+    testImplementation "org.hamcrest:hamcrest-library:$hamcrest_library"
     androidTestImplementation "com.android.support.test:runner:$test_runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core_version"
 

@@ -47,6 +47,7 @@ ext {
     junit_version = '4.12'
     test_runner_version = '1.0.2'
     espresso_core_version = '3.0.2'
+    hamcrest_library = '1.3'
 }
 
 task clean(type: Delete) {
