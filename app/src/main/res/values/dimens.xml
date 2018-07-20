@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="min_margin">8dp</dimen>
+    <dimen name="default_margin">12dp</dimen>
+    <dimen name="title_size">20sp</dimen>
 </resources>
