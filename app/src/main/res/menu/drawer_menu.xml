@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_beginning"
+            android:checked="true"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/beginning" />
+
+        <item
+            android:id="@+id/nav_advices"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/advices" />
+
+        <item
+            android:id="@+id/nav_equivalencies"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/equivalencies" />
+
+        <item
+            android:id="@+id/nav_recipes"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/recipes" />
+
+        <item
+            android:id="@+id/nav_places"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/places" />
+
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/events" />
+    </group>
+</menu>
