@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- main colors -->
     <color name="colorPrimary">#4caf50</color>
     <color name="colorPrimaryLight">#C8E6C9</color>
     <color name="colorPrimaryDark">#388e3c</color>
     <color name="colorAccent">#8bc34a</color>
 
+    <!-- text colors and divider -->
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
 
+    <!-- other -->
     <color name="white">#FFFFFF</color>
 
 </resources>

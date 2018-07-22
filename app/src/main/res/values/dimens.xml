@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- margins -->
     <dimen name="min_margin">8dp</dimen>
     <dimen name="default_margin">12dp</dimen>
+
+    <!-- text -->
     <dimen name="title_size">20sp</dimen>
+
+    <!-- navigation drawer -->
+    <dimen name="max_drawer_height">192dp</dimen>
+
+    <!-- elevation -->
+    <dimen name="nav_drawer_elevation">16dp</dimen>
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="button_elevation">4dp</dimen>
+    <dimen name="dialog_elevation">24dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
 </resources>

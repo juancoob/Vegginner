@@ -1,11 +1,18 @@
 <resources>
+
     <string name="app_name">Vegginner</string>
 
-
+    <!-- menu items -->
+    <string name="beginning">Beginning</string>
+    <string name="advices">Advices</string>
+    <string name="equivalencies">Equivalencies</string>
+    <string name="recipes">Recipes</string>
+    <string name="places">Places</string>
+    <string name="events">Events</string>
 
     <!-- content description texts -->
     <string name="image_to_decorate">Just an image to decorate or points something</string>
-
+    <string name="app_logo">App logo</string>
 
     <!-- dummy texts -->
     <string name="mock_description">Lorem ipsum dolor sit amet, nunc dui amet vestibulum mauris. Fringilla blandit ac quisque ligula ante nascetur, cursus morbi cras. Phasellus malesuada arcu nam felis, tellus in tincidunt imperdiet gravida, accumsan elit pede magna penatibus, dictumst urna montes at tempor. Dolor est lorem, asperiores est duis sit suscipit ut, sit lorem in. Quam urna dui hac et sodales, ac proin donec suspendisse aliquam, viverra quisque tellus, vel fermentum vestibulum mollis penatibus, quam aut nisl justo ut interdum in. Ut convallis condimentum, curabitur at viverra nec at, mauris vestibulum velit et commodo. Amet porta sociis. Est blandit faucibus cras in. Diam praesentium, tortor a at nulla sed, odio tempor in eget nonummy felis, phasellus fringilla sed metus consectetuer in mollis. Natoque sed sed odio eu mattis, sed varius occaecat, id nullam eros, wisi at laoreet vestibulum. Ut ullamcorper metus ipsum dui.</string>
