@@ -15,13 +15,24 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_advices"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/zero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sv_advice_seeker" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_advices"
+        app:layout_constraintEnd_toEndOf="@+id/rv_advices"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_advices"
+        app:layout_constraintRight_toRightOf="@+id/rv_advices"
+        app:layout_constraintStart_toStartOf="@+id/rv_advices"
+        app:layout_constraintTop_toTopOf="@+id/rv_advices" />
 
 
 </android.support.constraint.ConstraintLayout>
