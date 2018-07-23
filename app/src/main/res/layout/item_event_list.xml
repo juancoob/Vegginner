@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/min_margin"
+    android:background="@color/colorPrimaryLight">
+
+    <TextView
+        android:id="@+id/tv_event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/min_margin"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/title_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/mock_event_date" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_event_date"
+        app:layout_constraintLeft_toRightOf="@+id/tv_event_date"
+        app:layout_constraintStart_toEndOf="@+id/tv_event_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_event_date" />
+
+    <TextView
+        android:id="@+id/tv_place_name"
+        style="@style/titleStyle"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        app:layout_constraintBottom_toTopOf="@+id/tv_place_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/v_line"
+        app:layout_constraintStart_toEndOf="@+id/v_line"
+        app:layout_constraintTop_toTopOf="@+id/tv_event_date"
+        tools:text="@string/mock_sentence" />
+
+    <TextView
+        android:id="@+id/tv_place_address"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_event_date"
+        app:layout_constraintLeft_toRightOf="@+id/v_line"
+        app:layout_constraintStart_toEndOf="@+id/v_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_place_name"
+        tools:text="@string/mock_sentence" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_event_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_detail_image_height"
+            app:expandedTitleMarginEnd="@dimen/expanded_title_margin_end"
+            app:expandedTitleMarginStart="@dimen/expanded_title_margin_start"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/iv_event_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/event_image"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/t_event_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin">
+
+            <TextView
+                android:id="@+id/tv_event_date_label"
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_date_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:layout_marginStart="@dimen/min_margin"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_event_date_label"
+                app:layout_constraintLeft_toRightOf="@+id/tv_event_date_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_event_date_label"
+                app:layout_constraintTop_toTopOf="@+id/tv_event_date_label"
+                tools:text="@string/mock_word" />
+
+            <TextView
+                android:id="@+id/tv_event_place_label"
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_place_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_date_label" />
+
+            <TextView
+                android:id="@+id/tv_event_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:layout_marginStart="@dimen/min_margin"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_event_place_label"
+                app:layout_constraintLeft_toRightOf="@+id/tv_event_place_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_event_place_label"
+                app:layout_constraintTop_toTopOf="@+id/tv_event_place_label"
+                tools:text="@string/mock_word" />
+
+            <TextView
+                android:id="@+id/tv_event_group_label"
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_group_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_place_label" />
+
+            <TextView
+                android:id="@+id/tv_event_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:layout_marginStart="@dimen/min_margin"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_event_group_label"
+                app:layout_constraintLeft_toRightOf="@+id/tv_event_group_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_event_group_label"
+                app:layout_constraintTop_toTopOf="@+id/tv_event_group_label"
+                tools:text="@string/mock_word" />
+
+            <TextView
+                android:id="@+id/tv_event_attendee_label"
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_attendee_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_group_label" />
+
+            <TextView
+                android:id="@+id/tv_event_attendee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:layout_marginStart="@dimen/min_margin"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_event_attendee_label"
+                app:layout_constraintLeft_toRightOf="@+id/tv_event_attendee_label"
+                app:layout_constraintStart_toEndOf="@+id/tv_event_attendee_label"
+                app:layout_constraintTop_toTopOf="@+id/tv_event_attendee_label"
+                tools:text="@string/mock_word" />
+
+            <TextView
+                android:id="@+id/tv_event_description_label"
+                style="@style/titleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events_description_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_attendee_label" />
+
+            <TextView
+                android:id="@+id/tv_event_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/min_margin"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_event_description_label"
+                tools:text="@string/mock_description" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
