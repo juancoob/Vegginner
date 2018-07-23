@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:contentDescription="@string/image_to_decorate"
+        android:src="@drawable/ic_dot_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ingredient"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:maxLines="@integer/max_line_number"
+        android:ellipsize="end"
+        android:padding="@dimen/default_margin"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_dot"
+        app:layout_constraintLeft_toRightOf="@+id/iv_dot"
+        app:layout_constraintStart_toEndOf="@+id/iv_dot"
+        app:layout_constraintTop_toTopOf="@+id/iv_dot"
+        app:layout_constraintEnd_toEndOf="@+id/g_item_ingredient"
+        tools:text="@string/mock_sentence" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/g_item_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <CheckBox
+        android:id="@+id/cb_shopping_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/buy"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="@id/tv_ingredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_ingredient" />
+
+
+</android.support.constraint.ConstraintLayout>

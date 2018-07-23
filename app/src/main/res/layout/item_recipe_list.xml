@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_recipe_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_recipe_image_height"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/recipe_image"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/iv_data_background"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
+        android:background="@drawable/black_background"
+        android:contentDescription="@string/black_background"
+        app:layout_constraintBottom_toBottomOf="@id/iv_recipe_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_recipe_image"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_recipe_image"
+        app:layout_constraintRight_toRightOf="@+id/iv_recipe_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_recipe_image"
+        app:layout_constraintTop_toTopOf="@id/tv_recipe_title" />
+
+    <TextView
+        android:id="@+id/tv_recipe_title"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        android:paddingBottom="@dimen/min_margin"
+        android:paddingTop="@dimen/min_margin"
+        android:shadowColor="@color/colorPrimaryLight"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tv_servings"
+        app:layout_constraintEnd_toEndOf="@+id/g_item_recipe"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_recipe_image"
+        app:layout_constraintRight_toRightOf="@+id/g_item_recipe"
+        app:layout_constraintStart_toStartOf="@+id/iv_recipe_image"
+        tools:text="@string/mock_sentence" />
+
+    <ImageView
+        android:id="@+id/iv_servings_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/min_margin"
+        android:contentDescription="@string/image_to_decorate"
+        android:src="@drawable/ic_people_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_image"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recipe_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_recipe_title" />
+
+    <TextView
+        android:id="@+id/tv_servings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        android:shadowColor="@color/colorPrimaryLight"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_servings_image"
+        app:layout_constraintLeft_toRightOf="@+id/iv_servings_image"
+        app:layout_constraintStart_toEndOf="@+id/iv_servings_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_servings_image"
+        tools:text="@string/mock_word" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/g_item_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <ImageView
+        android:id="@+id/iv_like_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:clickable="true"
+        android:contentDescription="@string/like_button"
+        android:focusable="true"
+        android:src="@drawable/ic_star_border_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_data_background"
+        app:layout_constraintEnd_toEndOf="@+id/iv_data_background"
+        app:layout_constraintRight_toRightOf="@+id/iv_data_background"
+        app:layout_constraintTop_toTopOf="@+id/iv_data_background" />
+
+</android.support.constraint.ConstraintLayout>
