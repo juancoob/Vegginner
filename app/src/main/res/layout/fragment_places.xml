@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_margin">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mv_places"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        app:layout_constraintBottom_toTopOf="@+id/g_places"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/g_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <TextView
+        android:id="@+id/tv_map_spinner_label"
+        style="@style/titleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/map_spinner_label"
+        app:layout_constraintTop_toBottomOf="@+id/g_places" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/acs_place_types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/min_margin"
+        android:layout_marginStart="@dimen/min_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_map_spinner_label"
+        app:layout_constraintLeft_toRightOf="@+id/tv_map_spinner_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_map_spinner_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_map_spinner_label" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_places"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_marginTop="@dimen/default_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_spinner_label" />
+
+    <TextView
+        android:id="@+id/tv_no_recipes"
+        style="@style/titleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_places"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_places"
+        app:layout_constraintEnd_toEndOf="@+id/rv_places"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_places"
+        app:layout_constraintRight_toRightOf="@+id/rv_places"
+        app:layout_constraintStart_toStartOf="@+id/rv_places"
+        app:layout_constraintTop_toTopOf="@+id/rv_places" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/retry"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_no_recipes" />
+
+</android.support.constraint.ConstraintLayout>

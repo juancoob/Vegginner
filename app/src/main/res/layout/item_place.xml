@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/min_margin"
+    android:background="@color/colorPrimaryLight"
+    android:padding="@dimen/min_margin">
+
+    <ImageView
+        android:id="@+id/iv_place_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image_to_decorate"
+        android:padding="@dimen/default_margin"
+        android:src="@drawable/ic_place_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_place_name"
+        style="@style/titleStyle"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        app:layout_constraintBottom_toBottomOf="@+id/g_item_place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_place_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_place_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/mock_sentence" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/g_item_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_place_address"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_place_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_place_icon"
+        app:layout_constraintTop_toTopOf="@+id/g_item_place"
+        tools:text="@string/mock_sentence" />
+
+</android.support.constraint.ConstraintLayout>
