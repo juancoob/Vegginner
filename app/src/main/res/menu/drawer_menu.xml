@@ -4,32 +4,32 @@
         <item
             android:id="@+id/nav_beginning"
             android:checked="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_1_24dp"
             android:title="@string/beginning" />
 
         <item
             android:id="@+id/nav_advices"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_2_24dp"
             android:title="@string/advices" />
 
         <item
             android:id="@+id/nav_equivalencies"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_3_24dp"
             android:title="@string/equivalencies" />
 
         <item
             android:id="@+id/nav_recipes"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_4_24dp"
             android:title="@string/recipes" />
 
         <item
             android:id="@+id/nav_places"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_5_24dp"
             android:title="@string/places" />
 
         <item
             android:id="@+id/nav_events"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_filter_6_24dp"
             android:title="@string/events" />
     </group>
 </menu>

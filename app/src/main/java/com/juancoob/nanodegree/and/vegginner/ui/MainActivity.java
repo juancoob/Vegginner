@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
             actionBar.setTitle(R.string.app_name);
         }
     }
