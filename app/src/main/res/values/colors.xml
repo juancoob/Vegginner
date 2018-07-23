@@ -14,5 +14,7 @@
 
     <!-- other -->
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>
