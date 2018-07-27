@@ -50,7 +50,7 @@ ext {
     butterknife_version = '8.8.1'
     picasso_version = '2.71828'
     retrofit_version = '2.4.0'
-    converter_gson_version = '2.4.0'
+    okhttp3_logging_interceptor = '3.10.0'
     play_services_version = '15.0.1'
     timber_version = '4.7.1'
     crashlytics_version = '2.9.4'
