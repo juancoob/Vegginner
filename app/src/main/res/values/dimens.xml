@@ -15,6 +15,7 @@
 
     <!-- text -->
     <dimen name="title_size">20sp</dimen>
+    <dimen name="importantText">16sp</dimen>
 
     <!-- navigation drawer -->
     <dimen name="max_drawer_height">192dp</dimen>

@@ -2,6 +2,20 @@
 
     <string name="app_name" translatable="false">Vegginner</string>
 
+    <!-- main activity -->
+    <string name="exit_dialog_title">Exit</string>
+    <string name="exit_dialog_message">Do you want to close the app?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- menu items -->
+    <string name="beginning">Beginning</string>
+    <string name="advices">Advices</string>
+    <string name="equivalencies">Equivalencies</string>
+    <string name="recipes">Recipes</string>
+    <string name="places">Places</string>
+    <string name="events">Events</string>
+
     <!-- recipes -->
     <string name="servings">Servings:</string>
     <string name="ingredients">Ingredients:</string>
@@ -16,7 +30,6 @@
     <string name="map_spinner_label">Select a veg-friendly type:</string>
     <string name="no_places">Sorry! There are no places near you</string>
 
-
     <!-- events -->
     <string name="events_description">Find veg-friendly events near you!</string>
     <string name="events_date_label">Date:</string>
@@ -26,17 +39,13 @@
     <string name="events_description_label">Description:</string>
     <string name="no_events">Sorry! There are no events near you</string>
 
-    <!-- menu items -->
-    <string name="beginning">Beginning</string>
-    <string name="advices">Advices</string>
-    <string name="equivalencies">Equivalencies</string>
-    <string name="recipes">Recipes</string>
-    <string name="places">Places</string>
-    <string name="events">Events</string>
-
     <!-- no internet -->
-    <string name="no_internet">There is no internet connection</string>
+    <string name="no_internet_title">There is no internet connection</string>
+    <string name="no_internet_message">Enable the internet connection. Do you want to load the list again?</string>
     <string name="retry">Retry</string>
+
+    <!-- no more results -->
+    <string name="no_results">There are no more results</string>
 
     <!-- content description texts -->
     <string name="image_to_decorate">Just an image to decorate or points something</string>
