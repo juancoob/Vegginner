@@ -1,4 +1,4 @@
-package com.juancoob.nanodegree.and.vegginner.ui.recipes;
+package com.juancoob.nanodegree.and.vegginner.viewmodel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
@@ -7,6 +7,7 @@ import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.local.FavoriteRecipeRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeResponse;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.RecipeDataSource;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.factory.RecipeDataSourceFactory;
@@ -16,19 +17,27 @@ import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import javax.inject.Inject;
+
 /**
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public class RecipesViewModel extends ViewModel {
 
     //todo dagger 2
+
+    @Inject
+    private VegginnerApp mVegginnerApp;
+
     private Executor mExecutor;
     private LiveData<NetworkState> mNetworkStateLiveData;
     private LiveData<NetworkState> mInitialLoadingLiveData;
     private LiveData<PagedList<SecondRecipeResponse>> mSecondRecipeResponseLiveData;
-    //todo dagger 2
-    private VegginnerApp mVegginnerApp;
+
+
     private RecipeDataSourceFactory mRecipeDataSourceFactory;
+
+    private FavoriteRecipeRepository mFavoriteRecipeRepository;
 
     public RecipesViewModel(VegginnerApp vegginnerApp) {
         mVegginnerApp = vegginnerApp;
@@ -44,6 +53,11 @@ public class RecipesViewModel extends ViewModel {
                 RecipeDataSource::getInitialLoading);
 
         getData();
+    }
+
+    //@Inject
+    public RecipesViewModel(FavoriteRecipeRepository favoriteRecipeRepository) {
+        mFavoriteRecipeRepository = favoriteRecipeRepository;
     }
 
     private void getData() {

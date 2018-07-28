@@ -1,6 +1,5 @@
 package com.juancoob.nanodegree.and.vegginner.ui.recipes;
 
-import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +15,9 @@ import android.widget.ProgressBar;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
-import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
+import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,10 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public ProgressBar loadingProgressBar;
 
     private RecipesViewModel mRecipesViewModel;
+
+    @Inject
+    private RecipesViewModel mRecipesViewModel2;
+
     private Context mCtx;
     private GridLayoutManager mGridLayoutManager;
     private RecipesListAdapter mRecipesListAdapter;
@@ -54,7 +59,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((VegginnerApp)getActivity().getApplication()).getRecipeComponent().injectRecipesSection(this);
     }
 
     @Nullable
