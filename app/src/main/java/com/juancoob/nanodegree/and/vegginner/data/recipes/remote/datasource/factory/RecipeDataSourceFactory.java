@@ -3,7 +3,7 @@ package com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.fac
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.DataSource;
 
-import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.RecipeDataSource;
 
 /**
@@ -11,12 +11,11 @@ import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.Reci
  */
 public class RecipeDataSourceFactory extends DataSource.Factory {
 
+    private IRecipeApiService mRecipeApiService;
     private MutableLiveData<RecipeDataSource> mRecipeDataSourceMutableLiveData;
-    private RecipeDataSource mRecipeDataSource;
-    private VegginnerApp mVegginnerApp;
 
-    public RecipeDataSourceFactory(VegginnerApp vegginnerApp) {
-        mVegginnerApp = vegginnerApp;
+    public RecipeDataSourceFactory(IRecipeApiService recipeApiService) {
+        mRecipeApiService = recipeApiService;
         mRecipeDataSourceMutableLiveData = new MutableLiveData<>();
     }
 
@@ -26,8 +25,8 @@ public class RecipeDataSourceFactory extends DataSource.Factory {
 
     @Override
     public DataSource create() {
-        mRecipeDataSource = new RecipeDataSource(mVegginnerApp);
-        mRecipeDataSourceMutableLiveData.postValue(mRecipeDataSource);
-        return mRecipeDataSource;
+        RecipeDataSource recipeDataSource = new RecipeDataSource(mRecipeApiService);
+        mRecipeDataSourceMutableLiveData.postValue(recipeDataSource);
+        return recipeDataSource;
     }
 }
