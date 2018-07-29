@@ -11,6 +11,14 @@ android {
         versionName version_Name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        vegginnerConfig {
+            storeFile file('STORE_FILE')
+            storePassword 'STORE_PASSWORD'
+            keyAlias 'ALIAS'
+            keyPassword 'KEY_PASSWORD'
+        }
+    }
     buildTypes {
         applicationVariants.all {
             buildConfigField "String", "EDAMAM_APP_ID", "\"" + "YOUR_EDAMAM_APP_ID" + "\""
@@ -19,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.vegginnerConfig
         }
         debug {
             minifyEnabled false
@@ -87,24 +96,6 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_library_version"
     androidTestImplementation "com.android.support.test:runner:$test_runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core_version"
-
-    //androidTestImplementation 'com.android.support.test:rules:1.0.2'
-
-    //androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
-
-    //implementation 'com.android.support:support-annotations:27.1.1'
-
-    //androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
-
-    //implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
-
-    // optional - Test helpers for LiveData
-
-    //testImplementation "android.arch.core:core-testing:$lifecycle_version"
-
-    // paging without Android dependencies for testing
-
-    //testImplementation "android.arch.paging:common:$paging_version"
 }
 
 // Dependencies for basic libraries required for the google services
