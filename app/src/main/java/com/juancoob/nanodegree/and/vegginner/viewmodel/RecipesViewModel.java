@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
-import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.FavoriteRecipeRepository;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeResponse;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.RecipeDataSource;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.factory.RecipeDataSourceFactory;
@@ -24,40 +24,33 @@ import javax.inject.Inject;
  */
 public class RecipesViewModel extends ViewModel {
 
-    //todo dagger 2
-
-    @Inject
-    private VegginnerApp mVegginnerApp;
-
     private Executor mExecutor;
     private LiveData<NetworkState> mNetworkStateLiveData;
     private LiveData<NetworkState> mInitialLoadingLiveData;
     private LiveData<PagedList<SecondRecipeResponse>> mSecondRecipeResponseLiveData;
-
-
     private RecipeDataSourceFactory mRecipeDataSourceFactory;
-
     private FavoriteRecipeRepository mFavoriteRecipeRepository;
+    private IRecipeApiService mRecipeApiService;
 
-    public RecipesViewModel(VegginnerApp vegginnerApp) {
-        mVegginnerApp = vegginnerApp;
+    @Inject
+    public RecipesViewModel(FavoriteRecipeRepository favoriteRecipeRepository, IRecipeApiService recipeApiService) {
+        mFavoriteRecipeRepository = favoriteRecipeRepository;
+        mRecipeApiService = recipeApiService;
+        initialize();
+        getData();
+    }
+
+    private void initialize() {
 
         mExecutor = Executors.newFixedThreadPool(Constants.MAXIMUN_POOL_SIZE);
 
-        mRecipeDataSourceFactory = new RecipeDataSourceFactory(mVegginnerApp);
+        mRecipeDataSourceFactory = new RecipeDataSourceFactory(mRecipeApiService);
 
         mNetworkStateLiveData = Transformations.switchMap(mRecipeDataSourceFactory.getRecipeDataSourceMutableLiveData(),
                 RecipeDataSource::getNetworkState);
 
         mInitialLoadingLiveData = Transformations.switchMap(mRecipeDataSourceFactory.getRecipeDataSourceMutableLiveData(),
                 RecipeDataSource::getInitialLoading);
-
-        getData();
-    }
-
-    //@Inject
-    public RecipesViewModel(FavoriteRecipeRepository favoriteRecipeRepository) {
-        mFavoriteRecipeRepository = favoriteRecipeRepository;
     }
 
     private void getData() {
