@@ -17,8 +17,6 @@ import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import javax.inject.Inject;
-
 /**
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
@@ -32,7 +30,6 @@ public class RecipesViewModel extends ViewModel {
     private FavoriteRecipeRepository mFavoriteRecipeRepository;
     private IRecipeApiService mRecipeApiService;
 
-    @Inject
     public RecipesViewModel(FavoriteRecipeRepository favoriteRecipeRepository, IRecipeApiService recipeApiService) {
         mFavoriteRecipeRepository = favoriteRecipeRepository;
         mRecipeApiService = recipeApiService;
