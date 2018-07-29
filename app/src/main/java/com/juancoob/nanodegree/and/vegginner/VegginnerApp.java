@@ -7,9 +7,9 @@ import com.juancoob.nanodegree.and.vegginner.di.DaggerVegginnerAppComponent;
 import com.juancoob.nanodegree.and.vegginner.di.RetrofitModule;
 import com.juancoob.nanodegree.and.vegginner.di.VegginnerAppComponent;
 import com.juancoob.nanodegree.and.vegginner.di.VegginnerAppModule;
-import com.juancoob.nanodegree.and.vegginner.di.recipes.DaggerRecipeComponent;
-import com.juancoob.nanodegree.and.vegginner.di.recipes.RecipeComponent;
-import com.juancoob.nanodegree.and.vegginner.di.recipes.RecipesRoomModule;
+import com.juancoob.nanodegree.and.vegginner.di.databaseScope.DaggerVegginnerRoomComponent;
+import com.juancoob.nanodegree.and.vegginner.di.databaseScope.VegginnerRoomComponent;
+import com.juancoob.nanodegree.and.vegginner.di.databaseScope.VegginnerRoomModule;
 import com.juancoob.nanodegree.and.vegginner.util.timber.TimberLog;
 
 import io.fabric.sdk.android.Fabric;
@@ -19,7 +19,7 @@ import io.fabric.sdk.android.Fabric;
  */
 public class VegginnerApp extends Application {
 
-    private RecipeComponent mRecipeComponent;
+    private VegginnerRoomComponent mVegginnerRoomComponent;
 
     @Override
     public void onCreate() {
@@ -39,13 +39,13 @@ public class VegginnerApp extends Application {
                 .retrofitModule(new RetrofitModule())
                 .build();
 
-        mRecipeComponent = DaggerRecipeComponent.builder()
+        mVegginnerRoomComponent = DaggerVegginnerRoomComponent.builder()
                 .vegginnerAppComponent(vegginnerAppComponent)
-                .recipesRoomModule(new RecipesRoomModule(this))
+                .vegginnerRoomModule(new VegginnerRoomModule(this))
                 .build();
     }
 
-    public RecipeComponent getRecipeComponent() {
-        return mRecipeComponent;
+    public VegginnerRoomComponent getRecipeComponent() {
+        return mVegginnerRoomComponent;
     }
 }
