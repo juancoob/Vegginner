@@ -1,12 +1,15 @@
 package com.juancoob.nanodegree.and.vegginner;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
-import com.juancoob.nanodegree.and.vegginner.data.RestApiFactory;
-import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
+import com.juancoob.nanodegree.and.vegginner.di.DaggerVegginnerAppComponent;
+import com.juancoob.nanodegree.and.vegginner.di.RetrofitModule;
+import com.juancoob.nanodegree.and.vegginner.di.VegginnerAppComponent;
+import com.juancoob.nanodegree.and.vegginner.di.VegginnerAppModule;
+import com.juancoob.nanodegree.and.vegginner.di.recipes.DaggerRecipeComponent;
 import com.juancoob.nanodegree.and.vegginner.di.recipes.RecipeComponent;
+import com.juancoob.nanodegree.and.vegginner.di.recipes.RecipesRoomModule;
 import com.juancoob.nanodegree.and.vegginner.util.timber.TimberLog;
 
 import io.fabric.sdk.android.Fabric;
@@ -14,10 +17,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by Juan Antonio Cobos Obrero on 21/07/18.
  */
-public class VegginnerApp extends Application{
-
-    //todo dagger 2
-    public IRecipeApiService recipeApiService;
+public class VegginnerApp extends Application {
 
     private RecipeComponent mRecipeComponent;
 
@@ -34,21 +34,15 @@ public class VegginnerApp extends Application{
         Fabric.with(fabric);
 
         // Init Dagger 2 components
-        DaggerRecipeComponent
+        VegginnerAppComponent vegginnerAppComponent = DaggerVegginnerAppComponent.builder()
+                .vegginnerAppModule(new VegginnerAppModule(this))
+                .retrofitModule(new RetrofitModule())
+                .build();
 
-    }
-
-    //todo dagger 2
-    public static VegginnerApp get(Context ctx) {
-        return (VegginnerApp) ctx.getApplicationContext();
-    }
-
-    //todo dagger 2
-    public IRecipeApiService getRecipeRestApi() {
-        if(recipeApiService == null) {
-            recipeApiService = RestApiFactory.createRecipeApi();
-        }
-        return recipeApiService;
+        mRecipeComponent = DaggerRecipeComponent.builder()
+                .vegginnerAppComponent(vegginnerAppComponent)
+                .recipesRoomModule(new RecipesRoomModule(this))
+                .build();
     }
 
     public RecipeComponent getRecipeComponent() {
