@@ -23,7 +23,7 @@
     <string name="steps">Steps</string>
     <string name="details">Details</string>
     <string name="steps_provided">Steps author:</string>
-    <string name="no_recipes">Sorry! There are no recipes</string>
+    <string name="no_recipes">Sorry! There are no recipes to show</string>
     <string name="no_steps">Sorry! The author removed this recipe</string>
 
     <!-- places -->
@@ -46,6 +46,10 @@
 
     <!-- no more results -->
     <string name="no_results">There are no more results</string>
+
+    <!-- error -->
+    <string name="something_wrong_title">Something went wrong</string>
+    <string name="something_wrong_message">Please, if the problem persists, contact with the author. Do you want to load the list again?</string>
 
     <!-- content description texts -->
     <string name="image_to_decorate">Just an image to decorate or points something</string>
