@@ -33,10 +33,8 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @BindView(R.id.pb_loading)
     public ProgressBar loadingProgressBar;
 
-    private RecipesViewModel mRecipesViewModel;
-
     @Inject
-    private RecipesViewModel mRecipesViewModel2;
+    public RecipesViewModel mRecipesViewModel;
 
     private Context mCtx;
     private GridLayoutManager mGridLayoutManager;
@@ -67,8 +65,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
-        //todo dagger 2
-        mRecipesViewModel = new RecipesViewModel(VegginnerApp.get(mCtx));
+
         mRecipesListAdapter = new RecipesListAdapter(this, mCtx);
         mRecipesViewModel.getSecondRecipeResponseLiveData().observe(this, secondRecipeResponseList -> mRecipesListAdapter.submitList(secondRecipeResponseList));
         mRecipesViewModel.getNetworkState().observe(this, networkState -> mRecipesListAdapter.setNetworkState(networkState));
