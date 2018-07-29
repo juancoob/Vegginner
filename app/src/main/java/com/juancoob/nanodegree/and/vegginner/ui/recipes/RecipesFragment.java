@@ -1,5 +1,6 @@
 package com.juancoob.nanodegree.and.vegginner.ui.recipes;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,16 +12,20 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
+import com.juancoob.nanodegree.and.vegginner.viewmodel.VegginnerViewModelFactory;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Juan Antonio Cobos Obrero on 26/07/18.
@@ -33,12 +38,19 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @BindView(R.id.pb_loading)
     public ProgressBar loadingProgressBar;
 
+    @BindView(R.id.tv_no_recipes)
+    public TextView noRecipesTextView;
+
+    @BindView(R.id.btn_retry)
+    public Button retryButton;
+
     @Inject
-    public RecipesViewModel mRecipesViewModel;
+    public VegginnerViewModelFactory vegginnerViewModelFactory;
 
     private Context mCtx;
     private GridLayoutManager mGridLayoutManager;
     private RecipesListAdapter mRecipesListAdapter;
+    private RecipesViewModel mRecipesViewModel;
 
     public RecipesFragment() {
         // Required empty public constructor
@@ -57,7 +69,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp)getActivity().getApplication()).getRecipeComponent().injectRecipesSection(this);
+        ((VegginnerApp) getActivity().getApplication()).getRecipeComponent().injectRecipesSection(this);
     }
 
     @Nullable
@@ -67,11 +79,11 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
         ButterKnife.bind(this, view);
 
         mRecipesListAdapter = new RecipesListAdapter(this, mCtx);
+        mRecipesViewModel = ViewModelProviders.of(this, vegginnerViewModelFactory).get(RecipesViewModel.class);
         mRecipesViewModel.getSecondRecipeResponseLiveData().observe(this, secondRecipeResponseList -> mRecipesListAdapter.submitList(secondRecipeResponseList));
         mRecipesViewModel.getNetworkState().observe(this, networkState -> mRecipesListAdapter.setNetworkState(networkState));
         mRecipesViewModel.getInitialLoadingLiveData().observe(this, networkState -> {
             mRecipesListAdapter.checkInitialLoading(networkState);
-            hideProgressBar();
         });
         initRecyclerview();
         return view;
@@ -97,9 +109,9 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void loadListAgain() {
         mRecipesViewModel.getAgainSecondRecipeResponseLiveData().observe(this, secondRecipeResponses -> {
-            mRecipesListAdapter.submitList(null);
-            mRecipesListAdapter.submitList(secondRecipeResponses);
-            hideProgressBar();
+            if(secondRecipeResponses != null && secondRecipeResponses.size() > 0) {
+                mRecipesListAdapter.submitList(secondRecipeResponses);
+            }
         });
     }
 
@@ -111,5 +123,23 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void hideProgressBar() {
         loadingProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoElements() {
+        noRecipesTextView.setVisibility(View.VISIBLE);
+        retryButton.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.btn_retry)
+    public void OnRetryPressed() {
+        hideNoElements();
+        showProgressBar();
+        loadListAgain();
+    }
+
+    public void hideNoElements() {
+        noRecipesTextView.setVisibility(View.GONE);
+        retryButton.setVisibility(View.GONE);
     }
 }

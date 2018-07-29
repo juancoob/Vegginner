@@ -7,4 +7,5 @@ public interface IRetryLoadingCallback {
     void loadListAgain();
     void showProgressBar();
     void hideProgressBar();
+    void showNoElements();
 }

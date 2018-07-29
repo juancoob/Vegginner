@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.arch.paging.PagedListAdapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,23 +95,31 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
     }
 
     public void checkInitialLoading(NetworkState networkState) {
-        if (networkState != null
-                && (networkState.getState().equals(NetworkState.Status.FAILED)
-                || networkState.getState().equals(NetworkState.Status.NO_INTERNET))) {
-            showNoInternetDialog();
+        if (networkState != null && networkState.getState().equals(NetworkState.Status.FAILED)) {
+            mRecipesFragment.hideProgressBar();
+            showErrorDialog(R.string.something_wrong_title, R.string.something_wrong_message);
+        } else if (networkState != null && networkState.getState().equals(NetworkState.Status.NO_INTERNET)) {
+            mRecipesFragment.hideProgressBar();
+            showErrorDialog(R.string.no_internet_title, R.string.no_internet_message);
         }
     }
 
-    private void showNoInternetDialog() {
+    private void showErrorDialog(int titleId, int messageId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-        builder.setTitle(R.string.no_internet_title)
-                .setMessage(R.string.no_internet_message)
+        builder.setTitle(titleId)
+                .setMessage(messageId)
                 .setPositiveButton(R.string.retry, (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                     mRecipesFragment.loadListAgain();
                     mRecipesFragment.showProgressBar();
                 })
-                .setNegativeButton(R.string.no, (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(R.string.no, (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    if (getItemCount() == 0) {
+                        mRecipesFragment.showNoElements();
+                    }
+                })
+                .setCancelable(false)
                 .show();
     }
 
@@ -180,12 +187,13 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
             if (networkState != null && networkState.getState() == NetworkState.Status.FAILED) {
                 noResultsTextView.setVisibility(View.VISIBLE);
                 noResultsTextView.setText(mCtx.getString(R.string.no_results));
+                showErrorDialog(R.string.something_wrong_title, R.string.something_wrong_message);
             } else {
                 noResultsTextView.setVisibility(View.GONE);
             }
 
             if (networkState != null && networkState.getState() == NetworkState.Status.NO_INTERNET) {
-                showNoInternetDialog();
+                showErrorDialog(R.string.no_internet_title, R.string.no_internet_message);
             }
         }
     }
