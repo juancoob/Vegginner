@@ -1,4 +1,4 @@
-package com.juancoob.nanodegree.and.vegginner.di.recipes;
+package com.juancoob.nanodegree.and.vegginner.di.databaseScope;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
