@@ -1,8 +1,7 @@
 package com.juancoob.nanodegree.and.vegginner.di.recipes;
 
+import com.juancoob.nanodegree.and.vegginner.di.VegginnerAppComponent;
 import com.juancoob.nanodegree.and.vegginner.ui.recipes.RecipesFragment;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -11,7 +10,7 @@ import dagger.Component;
  */
 
 @RecipeScope
-@Component(modules = {RecipesRoomModule.class, VegginnerAppModule.class})
+@Component(modules = RecipesRoomModule.class, dependencies = VegginnerAppComponent.class)
 public interface RecipeComponent {
 
     void injectRecipesSection(RecipesFragment recipesFragment);
