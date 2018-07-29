@@ -5,8 +5,8 @@ import android.arch.paging.PageKeyedDataSource;
 import android.support.annotation.NonNull;
 
 import com.juancoob.nanodegree.and.vegginner.BuildConfig;
-import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.FirstRecipeResponse;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeResponse;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
 import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
@@ -21,12 +21,12 @@ import timber.log.Timber;
  */
 public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResponse> {
 
-    private VegginnerApp mVegginnerApp;
+    private IRecipeApiService mRecipeApiService;
     private MutableLiveData<NetworkState> mNetworkState;
     private MutableLiveData<NetworkState> mInitialLoading;
 
-    public RecipeDataSource(VegginnerApp vegginnerApp) {
-        this.mVegginnerApp = vegginnerApp;
+    public RecipeDataSource(IRecipeApiService recipeApiService) {
+        mRecipeApiService = recipeApiService;
         mNetworkState = new MutableLiveData<>();
         mInitialLoading = new MutableLiveData<>();
     }
@@ -47,7 +47,7 @@ public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResp
 
         Timber.d("0 elements of %s loaded", params.requestedLoadSize);
 
-        mVegginnerApp.getRecipeRestApi().getFirstRecipeResponse(Constants.QUERY_URL_RECIPE,
+        mRecipeApiService.getFirstRecipeResponse(Constants.QUERY_URL_RECIPE,
                 BuildConfig.EDAMAM_APP_ID, BuildConfig.EDAMAM_APP_KEY, Constants.EXCLUDED_RECIPE, (long) Constants.INITIAL_ELEMENT, Constants.ELEMENTS_BY_PAGE)
                 .enqueue(new Callback<FirstRecipeResponse>() {
                     @Override
@@ -83,7 +83,7 @@ public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResp
 
         mNetworkState.postValue(NetworkState.LOADING);
 
-        mVegginnerApp.getRecipeRestApi().getFirstRecipeResponse(Constants.QUERY_URL_RECIPE,
+        mRecipeApiService.getFirstRecipeResponse(Constants.QUERY_URL_RECIPE,
                 BuildConfig.EDAMAM_APP_ID, BuildConfig.EDAMAM_APP_KEY, Constants.EXCLUDED_RECIPE, params.key, params.key.intValue() + Constants.ELEMENTS_BY_PAGE)
                 .enqueue(new Callback<FirstRecipeResponse>() {
                     @Override
