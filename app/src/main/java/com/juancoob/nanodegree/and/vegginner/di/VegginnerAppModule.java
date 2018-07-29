@@ -1,6 +1,4 @@
-package com.juancoob.nanodegree.and.vegginner.di.recipes;
-
-import android.app.Application;
+package com.juancoob.nanodegree.and.vegginner.di;
 
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 
@@ -21,7 +19,7 @@ public class VegginnerAppModule {
     }
 
     @Provides
-    Application provideApplication() {
+    VegginnerApp provideApplication() {
         return mVegginnerApp;
     }
 
