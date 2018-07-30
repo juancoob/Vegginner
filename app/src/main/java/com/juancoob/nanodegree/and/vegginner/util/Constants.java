@@ -4,6 +4,12 @@ package com.juancoob.nanodegree.and.vegginner.util;
  * Created by Juan Antonio Cobos Obrero on 24/07/18.
  */
 public final class Constants {
+    // Fragment names
+    public static final String RECIPE_DETAILS = "recipeDetails";
+
+    // ViewPager
+    public static final int NUM_RECIPE_DETAIL_PAGES = 2;
+
     // Network states
     public static final String SUCCESS = "Success";
     public static final String RUNNING = "Running";
