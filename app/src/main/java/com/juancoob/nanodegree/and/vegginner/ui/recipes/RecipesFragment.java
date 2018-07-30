@@ -18,8 +18,12 @@ import android.widget.TextView;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
+import com.juancoob.nanodegree.and.vegginner.util.Constants;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.VegginnerViewModelFactory;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -69,7 +73,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp) getActivity().getApplication()).getRecipeComponent().injectRecipesSection(this);
+        ((VegginnerApp) Objects.requireNonNull(getActivity()).getApplication()).getRecipeComponent().injectRecipesSection(this);
     }
 
     @Nullable
@@ -79,7 +83,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
         ButterKnife.bind(this, view);
 
         mRecipesListAdapter = new RecipesListAdapter(this, mCtx);
-        mRecipesViewModel = ViewModelProviders.of(this, vegginnerViewModelFactory).get(RecipesViewModel.class);
+        mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
         mRecipesViewModel.getSecondRecipeResponseLiveData().observe(this, secondRecipeResponseList -> mRecipesListAdapter.submitList(secondRecipeResponseList));
         mRecipesViewModel.getNetworkState().observe(this, networkState -> mRecipesListAdapter.setNetworkState(networkState));
         mRecipesViewModel.getInitialLoadingLiveData().observe(this, networkState -> {
@@ -141,5 +145,11 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public void hideNoElements() {
         noRecipesTextView.setVisibility(View.GONE);
         retryButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRecipeDetails(Recipe selectedRecipe) {
+        mRecipesViewModel.getSelectedRecipe().setValue(selectedRecipe);
+        mRecipesViewModel.getFragmentDetailToReplace().setValue(Constants.RECIPE_DETAILS);
     }
 }
