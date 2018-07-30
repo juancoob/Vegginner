@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctl_recipe_toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/min_detail_image_height"
             app:expandedTitleMarginEnd="@dimen/expanded_title_margin_end"
@@ -28,6 +29,13 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/t_recipe_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?android:attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap" />
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tl_recipe_detail"
             android:layout_width="match_parent"
@@ -42,15 +50,17 @@
         android:id="@+id/vp_recipe_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/default_margin"
         android:elevation="@dimen/fab_elevation"
         android:src="@drawable/ic_star_border_24dp"
-        app:layout_anchor="@id/tl_recipe_detail"
+        app:layout_anchor="@id/abl_recipe_detail"
         app:layout_anchorGravity="bottom|end" />
 
 </android.support.design.widget.CoordinatorLayout>
