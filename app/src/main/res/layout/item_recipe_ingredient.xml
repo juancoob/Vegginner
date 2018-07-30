@@ -40,7 +40,7 @@
         app:layout_constraintGuide_percent="0.78" />
 
     <CheckBox
-        android:id="@+id/cb_shopping_list"
+        android:id="@+id/cb_shopping_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
