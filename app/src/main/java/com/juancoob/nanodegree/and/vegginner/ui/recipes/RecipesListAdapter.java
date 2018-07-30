@@ -17,6 +17,8 @@ import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeRes
 import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -123,7 +125,7 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
                 .show();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.iv_recipe_image)
         public ImageView recipeImageView;
@@ -140,6 +142,7 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
         public RecipeViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
 
         public void bindTo(SecondRecipeResponse secondRecipeResponse) {
@@ -160,6 +163,11 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
                 Toast.makeText(mCtx, "Quitar favorito", Toast.LENGTH_SHORT).show();
                 Picasso.get().load(R.drawable.ic_star_border_24dp).placeholder(R.drawable.ic_star_border_24dp).noFade().into(likeButtonImageView);
             }*/
+        }
+
+        @Override
+        public void onClick(View view) {
+            mRecipesFragment.showRecipeDetails(Objects.requireNonNull(getItem(getAdapterPosition())).getRecipe());
         }
     }
 
