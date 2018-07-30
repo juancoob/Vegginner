@@ -1,6 +1,7 @@
 package com.juancoob.nanodegree.and.vegginner.viewmodel;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.arch.paging.LivePagedListBuilder;
@@ -8,6 +9,7 @@ import android.arch.paging.PagedList;
 
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.FavoriteRecipeRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeResponse;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.RecipeDataSource;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.factory.RecipeDataSourceFactory;
@@ -26,6 +28,8 @@ public class RecipesViewModel extends ViewModel {
     private LiveData<NetworkState> mNetworkStateLiveData;
     private LiveData<NetworkState> mInitialLoadingLiveData;
     private LiveData<PagedList<SecondRecipeResponse>> mSecondRecipeResponseLiveData;
+    private MutableLiveData<String> mFragmentDetailToReplace;
+    private MutableLiveData<Recipe> mSelectedRecipe;
     private RecipeDataSourceFactory mRecipeDataSourceFactory;
     private FavoriteRecipeRepository mFavoriteRecipeRepository;
     private IRecipeApiService mRecipeApiService;
@@ -48,6 +52,10 @@ public class RecipesViewModel extends ViewModel {
 
         mInitialLoadingLiveData = Transformations.switchMap(mRecipeDataSourceFactory.getRecipeDataSourceMutableLiveData(),
                 RecipeDataSource::getInitialLoading);
+
+        mFragmentDetailToReplace = new MutableLiveData<>();
+
+        mSelectedRecipe = new MutableLiveData<>();
     }
 
     private void getData() {
@@ -77,5 +85,13 @@ public class RecipesViewModel extends ViewModel {
     public LiveData<PagedList<SecondRecipeResponse>> getAgainSecondRecipeResponseLiveData() {
         getData();
         return mSecondRecipeResponseLiveData;
+    }
+
+    public MutableLiveData<String> getFragmentDetailToReplace() {
+        return mFragmentDetailToReplace;
+    }
+
+    public MutableLiveData<Recipe> getSelectedRecipe() {
+        return mSelectedRecipe;
     }
 }
