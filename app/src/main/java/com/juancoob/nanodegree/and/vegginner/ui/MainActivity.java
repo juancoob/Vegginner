@@ -1,7 +1,6 @@
 package com.juancoob.nanodegree.and.vegginner.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -50,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Inject
     public VegginnerViewModelFactory vegginnerViewModelFactory;
 
+    private RecipesViewModel mRecipesViewModel;
+
     private boolean mBackToMainWhenPressBack;
 
     @Override
@@ -60,16 +61,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         setToolbar();
         mainNavigationView.setNavigationItemSelectedListener(this);
-        setFragment();
-        RecipesViewModel recipesViewModel = ViewModelProviders.of(this, vegginnerViewModelFactory).get(RecipesViewModel.class);
-        recipesViewModel.getFragmentDetailToReplace().observe(this, fragmentDetailToReplace -> {
-            mBackToMainWhenPressBack = true;
-            if (Constants.RECIPE_DETAILS.equals(fragmentDetailToReplace)) {
-                removeFragmentFromTheStack();
-                replaceFragmentToActivity(getSupportFragmentManager(), RecipeDetailsFragment.getInstance(), R.id.fl_main_content, true);
+        setBeginningFragment(savedInstanceState == null);
+        mRecipesViewModel = ViewModelProviders.of(this, vegginnerViewModelFactory).get(RecipesViewModel.class);
+        mRecipesViewModel.getFragmentDetailToReplace().observe(this, fragmentDetailToReplace -> {
+            if (fragmentDetailToReplace != null) {
+                mBackToMainWhenPressBack = true;
+                if (Constants.RECIPE_DETAILS.equals(fragmentDetailToReplace)) {
+                    replaceFragmentToActivity(getSupportFragmentManager(), RecipeDetailsFragment.getInstance(), R.id.fl_main_content, Constants.RECIPE_DETAILS, true);
+                }
+                hideToolbar();
+                lockDrawer();
             }
-            hideToolbar();
-            lockDrawer();
         });
     }
 
@@ -83,18 +85,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void setFragment() {
-        FragmentManager manager = getSupportFragmentManager();
-        if (manager.findFragmentByTag("") == null) {
-            replaceFragmentToActivity(getSupportFragmentManager(), BeginningFragment.getInstance(), R.id.fl_main_content, false);
+    private void setBeginningFragment(boolean isSavedInstanceStateEmpty) {
+        if (isSavedInstanceStateEmpty) {
+            replaceFragmentToActivity(getSupportFragmentManager(), BeginningFragment.getInstance(), R.id.fl_main_content, Constants.BEGINNING, false);
         }
     }
 
-    private void replaceFragmentToActivity(FragmentManager fragmentManager, Fragment fragment, int fragmentId, boolean addToBackStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(fragmentId, fragment, "");
-        if (addToBackStack) transaction.addToBackStack(null);
-        transaction.commit();
+    private void replaceFragmentToActivity(FragmentManager fragmentManager, Fragment fragment, int fragmentId, String tag, boolean addToBackStack) {
+        if (getSupportFragmentManager().findFragmentByTag(tag) == null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(fragmentId, fragment, tag);
+            if (addToBackStack) transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     @Override
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_beginning:
-                replaceFragmentToActivity(getSupportFragmentManager(), BeginningFragment.getInstance(), R.id.fl_main_content, false);
+                replaceFragmentToActivity(getSupportFragmentManager(), BeginningFragment.getInstance(), R.id.fl_main_content, Constants.BEGINNING, false);
                 break;
             case R.id.nav_advices:
                 Toast.makeText(MainActivity.this, "Advices", Toast.LENGTH_SHORT).show();
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Equivalencies", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_recipes:
-                replaceFragmentToActivity(getSupportFragmentManager(), RecipesFragment.getInstance(), R.id.fl_main_content, false);
+                replaceFragmentToActivity(getSupportFragmentManager(), RecipesFragment.getInstance(), R.id.fl_main_content, Constants.RECIPES, false);
                 break;
             case R.id.nav_places:
                 Toast.makeText(MainActivity.this, "Places", Toast.LENGTH_SHORT).show();
@@ -146,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (mBackToMainWhenPressBack) {
             removeFragmentFromTheStack();
             mBackToMainWhenPressBack = false;
+            initFragmentDetailToReplace();
             showToolbar();
             setToolbar();
             unlockDrawer();
@@ -153,19 +157,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.exit_dialog_title)
                     .setMessage(R.string.exit_dialog_message)
-                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            MainActivity.super.onBackPressed();
-                        }
+                    .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                        MainActivity.super.onBackPressed();
                     })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }).show();
+                    .setNegativeButton(R.string.no, (dialogInterface, i) -> dialogInterface.dismiss()).show();
         }
     }
 
@@ -187,5 +183,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void removeFragmentFromTheStack() {
         getSupportFragmentManager().popBackStack();
+    }
+
+    private void initFragmentDetailToReplace() {
+        mRecipesViewModel.getFragmentDetailToReplace().setValue(null);
     }
 }
