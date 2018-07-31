@@ -5,7 +5,13 @@ package com.juancoob.nanodegree.and.vegginner.util;
  */
 public final class Constants {
     // Fragment names
-    public static final String RECIPE_DETAILS = "recipeDetails";
+    public static final String BEGINNING = "Beginning";
+    public static final String ADVICES = "Advices";
+    public static final String EQUIVALENCIES = "Equivalencies";
+    public static final String RECIPES = "Recipes";
+    public static final String RECIPE_DETAILS = "RecipeDetails";
+    public static final String PLACES = "Places";
+    public static final String EVENTS = "Events";
 
     // ViewPager
     public static final int NUM_RECIPE_DETAIL_PAGES = 2;
