@@ -79,6 +79,9 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor"
 
+    // HTML parser library
+    implementation "org.jsoup:jsoup:$jsoup_version"
+
     // Google maps
     implementation "com.google.android.gms:play-services-maps:$play_services_version"
     implementation "com.google.android.gms:play-services-location:$play_services_version"
