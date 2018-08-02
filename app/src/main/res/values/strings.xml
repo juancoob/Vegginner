@@ -26,6 +26,10 @@
     <string name="no_recipes">Sorry! There are no recipes to show</string>
     <string name="no_steps">Sorry! The author removed this recipe</string>
 
+    <!-- recipes menu -->
+    <string name="all_recipes">All recipes</string>
+    <string name="fav_recipes">Favorite recipes</string>
+
     <!-- places -->
     <string name="map_spinner_label">Select a veg-friendly type:</string>
     <string name="no_places">Sorry! There are no places near you</string>
@@ -55,6 +59,7 @@
     <string name="image_to_decorate">Just an image to decorate or points something</string>
     <string name="app_logo">App logo</string>
     <string name="recipe_image">Recipe image</string>
+    <string name="edamam_logo">Powered by Edamam</string>
     <string name="black_background">Black background to read recipe titles better</string>
     <string name="like_button">Button to save or delete recipes</string>
     <string name="event_image">Event image</string>
