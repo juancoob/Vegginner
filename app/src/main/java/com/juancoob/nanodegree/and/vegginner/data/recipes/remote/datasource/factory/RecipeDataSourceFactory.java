@@ -7,6 +7,8 @@ import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiServi
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.datasource.RecipeDataSource;
 
 /**
+ * This is the data source factory to create recipe data sources wrapping it on a MutableLiveData
+ *
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public class RecipeDataSourceFactory extends DataSource.Factory {

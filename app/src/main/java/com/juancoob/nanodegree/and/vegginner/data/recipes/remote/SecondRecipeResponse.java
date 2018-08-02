@@ -7,9 +7,9 @@ import android.support.v7.util.DiffUtil;
 import com.google.gson.annotations.SerializedName;
 
 /**
+ * This class takes recipes from EDAMAM API
+ *
  * Created by Juan Antonio Cobos Obrero on 24/07/18.
- * <p>
- * This class is going to take data from EDAMAM API
  */
 
 public class SecondRecipeResponse implements Parcelable {

@@ -7,6 +7,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
+ * This interface is the service to get recipes
+ *
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public interface IRecipeApiService {

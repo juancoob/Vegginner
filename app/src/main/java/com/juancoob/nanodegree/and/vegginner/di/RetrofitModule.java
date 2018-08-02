@@ -14,6 +14,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * This is the Retrofit module to get the HttpLoggingInterceptor, OkHttpClient.Builder, Retrofit
+ * and Api services instance
+ *
  * Created by Juan Antonio Cobos Obrero on 29/07/18.
  */
 

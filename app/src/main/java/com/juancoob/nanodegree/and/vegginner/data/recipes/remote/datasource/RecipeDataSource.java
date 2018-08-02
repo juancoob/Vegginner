@@ -17,6 +17,8 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 /**
+ * This class is the Recipe data source to get data from the api service
+ *
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResponse> {

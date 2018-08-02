@@ -6,6 +6,8 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
+ * This is the Application module to get the Application instance
+ *
  * Created by Juan Antonio Cobos Obrero on 28/07/18.
  */
 

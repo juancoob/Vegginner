@@ -13,6 +13,8 @@ import com.juancoob.nanodegree.and.vegginner.R;
 import butterknife.ButterKnife;
 
 /**
+ * This is the main fragment which shows main information about veganism
+ *
  * Created by Juan Antonio Cobos Obrero on 24/07/18.
  */
 public class BeginningFragment extends Fragment {

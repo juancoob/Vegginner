@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
+ * This class is the Recipe model
+ *
  * Created by Juan Antonio Cobos Obrero on 24/07/18.
- * <p>
- * This class is going to take recipes from EDAMAM API
  */
 
 

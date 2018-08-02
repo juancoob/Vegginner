@@ -15,6 +15,8 @@ import com.juancoob.nanodegree.and.vegginner.util.timber.TimberLog;
 import io.fabric.sdk.android.Fabric;
 
 /**
+ * This is the Application class with initializes Firebase Crashlitycs and Dagger 2 components
+ *
  * Created by Juan Antonio Cobos Obrero on 21/07/18.
  */
 public class VegginnerApp extends Application {

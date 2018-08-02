@@ -3,6 +3,8 @@ package com.juancoob.nanodegree.and.vegginner.ui.recipes;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
 
 /**
+ * This interface helps to communicate from RecipesListAdapter to RecipesFragment
+ *
  * Created by Juan Antonio Cobos Obrero on 26/07/18.
  */
 public interface IRetryLoadingCallback {

@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by Juan Antonio Cobos Obrero on 24/07/18.
- * <p>
  * This class is going to take data from EDAMAM API
+ *
+ * Created by Juan Antonio Cobos Obrero on 24/07/18.
  */
 
 public class FirstRecipeResponse implements Parcelable {

@@ -8,6 +8,8 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
+ * This is the Application component which connects the Application modules
+ *
  * Created by Juan Antonio Cobos Obrero on 29/07/18.
  */
 

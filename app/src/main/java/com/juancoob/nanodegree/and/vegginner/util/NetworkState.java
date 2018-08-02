@@ -1,6 +1,8 @@
 package com.juancoob.nanodegree.and.vegginner.util;
 
 /**
+ * This class checks the network state using the paging library
+ *
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public class NetworkState {
