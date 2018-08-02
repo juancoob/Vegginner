@@ -9,8 +9,8 @@
         android:id="@+id/tv_steps_label"
         style="@style/titleStyle"
         android:layout_width="wrap_content"
-        android:padding="@dimen/default_margin"
         android:layout_height="wrap_content"
+        android:padding="@dimen/default_margin"
         android:text="@string/steps_provided"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +45,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_steps_label" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/g_recipe_steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
     <TextView
         android:id="@+id/tv_no_recipes"
         style="@style/titleStyle"
@@ -53,11 +60,10 @@
         android:text="@string/no_steps"
         android:textAlignment="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/g_recipe_steps" />
 
 </android.support.constraint.ConstraintLayout>
