@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_all_recipes_label"
+        android:title="@string/all_recipes"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_fav_recipes_label"
+        android:title="@string/fav_recipes"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/nav_all_recipes"
+        android:title="@string/all_recipes" />
+
+    <item
+        android:id="@+id/nav_fav_recipes"
+        android:title="@string/fav_recipes" />
+
+</menu>
