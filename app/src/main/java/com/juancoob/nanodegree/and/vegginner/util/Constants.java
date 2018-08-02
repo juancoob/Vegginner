@@ -1,24 +1,33 @@
 package com.juancoob.nanodegree.and.vegginner.util;
 
 /**
+ * This class contains constants to use on the entire app
+ *
  * Created by Juan Antonio Cobos Obrero on 24/07/18.
  */
 public final class Constants {
     // Fragment names
-    public static final String BEGINNING = "Beginning";
-    public static final String ADVICES = "Advices";
-    public static final String EQUIVALENCIES = "Equivalencies";
-    public static final String RECIPES = "Recipes";
-    public static final String RECIPE_DETAILS = "RecipeDetails";
-    public static final String PLACES = "Places";
-    public static final String EVENTS = "Events";
+    public static final String BEGINNING = "beginning";
+    public static final String ADVICES = "advices";
+    public static final String EQUIVALENCIES = "equivalencies";
+    public static final String RECIPES = "recipes";
+    public static final String RECIPE_DETAILS = "recipeDetails";
+    public static final String PLACES = "places";
+    public static final String EVENTS = "events";
 
-    // ViewPager
+    // Recipe ViewPager
     public static final int NUM_RECIPE_DETAIL_PAGES = 2;
+    public static final String VIEW_PAGER_POSITION = "viewPagerPosition";
+    public static final String RECIPE = "recipe";
+
+    // Recipe menu
+    public static final String ALL_RECIPES = "allRecipes";
+    public static final String FAV_RECIPES = "favRecipes";
+    public static final String OPTION_SELECTED = "optionSelected";
 
     // Network states
-    public static final String SUCCESS = "Success";
-    public static final String RUNNING = "Running";
+    public static final String SUCCESS = "success";
+    public static final String RUNNING = "running";
 
     // Response type
     public static final int SUCCESS_RESPONSE = 200;
