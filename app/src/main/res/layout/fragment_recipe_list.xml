@@ -26,6 +26,18 @@
         app:layout_constraintStart_toStartOf="@+id/rv_recipes"
         app:layout_constraintTop_toTopOf="@+id/rv_recipes" />
 
+    <ImageView
+        android:id="@+id/iv_edamam_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/edamam_logo"
+        android:src="@drawable/edamam_logo"
+        app:layout_constraintEnd_toEndOf="@+id/rv_recipes"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_recipes"
+        app:layout_constraintRight_toRightOf="@+id/rv_recipes"
+        app:layout_constraintStart_toStartOf="@+id/rv_recipes"
+        app:layout_constraintTop_toBottomOf="@+id/pb_loading" />
+
     <TextView
         android:id="@+id/tv_no_recipes"
         style="@style/titleStyle"
