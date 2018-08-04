@@ -3,6 +3,7 @@ package com.juancoob.nanodegree.and.vegginner.ui.recipes;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,19 +11,26 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
+import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipe;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.VegginnerViewModelFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -32,6 +40,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * This fragment shows the recipe list
+ * <p>
  * Created by Juan Antonio Cobos Obrero on 26/07/18.
  */
 public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
@@ -41,6 +51,9 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
 
     @BindView(R.id.pb_loading)
     public ProgressBar loadingProgressBar;
+
+    @BindView(R.id.iv_edamam_logo)
+    public ImageView edamamLogo;
 
     @BindView(R.id.tv_no_recipes)
     public TextView noRecipesTextView;
@@ -52,9 +65,14 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public VegginnerViewModelFactory vegginnerViewModelFactory;
 
     private Context mCtx;
-    private GridLayoutManager mGridLayoutManager;
     private RecipesListAdapter mRecipesListAdapter;
+    private FavoriteListAdapter mFavoriteListAdapter;
     private RecipesViewModel mRecipesViewModel;
+    private Menu mRecipesMenu;
+    private String mOptionSelected;
+    private GridLayoutManager mGridLayoutManager;
+    private Parcelable mCurrentFavRecipeRecyclerViewState;
+    private List<String> mFavoriteElementListById;
 
     public RecipesFragment() {
         // Required empty public constructor
@@ -74,6 +92,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((VegginnerApp) Objects.requireNonNull(getActivity()).getApplication()).getRecipeComponent().injectRecipesSection(this);
+        mFavoriteElementListById = new ArrayList<>();
     }
 
     @Nullable
@@ -81,22 +100,80 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipe_list, container, false);
         ButterKnife.bind(this, view);
-
-        mRecipesListAdapter = new RecipesListAdapter(this, mCtx);
+        setHasOptionsMenu(true);
         mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
-        mRecipesViewModel.getSecondRecipeResponseLiveData().observe(this, secondRecipeResponseList -> mRecipesListAdapter.submitList(secondRecipeResponseList));
-        mRecipesViewModel.getNetworkState().observe(this, networkState -> mRecipesListAdapter.setNetworkState(networkState));
-        mRecipesViewModel.getInitialLoadingLiveData().observe(this, networkState -> {
-            mRecipesListAdapter.checkInitialLoading(networkState);
+        initAllRecipesRecyclerview();
+        initFavoriteRecipesRecyclerView();
+        mRecipesViewModel.getOptionSelected().observe(getActivity(), optionSelected -> {
+            mOptionSelected = optionSelected;
+
+            if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
+                mRecipesViewModel.getSecondRecipeResponsePagedList().observe(getActivity(), secondRecipeResponseList -> {
+                    if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
+                        mRecipesListAdapter.submitList(secondRecipeResponseList);
+                    }
+                });
+                mRecipesViewModel.getNetworkState().observe(getActivity(), networkState -> {
+                    if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
+                        mRecipesListAdapter.setNetworkState(networkState);
+                    }
+                });
+                mRecipesViewModel.getInitialLoadingLiveData().observe(getActivity(), networkState -> {
+                    if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
+                        mRecipesListAdapter.checkInitialLoading(networkState);
+                    }
+                });
+                recipesRecyclerView.setAdapter(mRecipesListAdapter);
+            } else if (Constants.FAV_RECIPES.equals(mOptionSelected)) {
+                mRecipesViewModel.getFavoriteRecipePagedList().observe(getActivity(), favoriteRecipes -> {
+                    if (Constants.FAV_RECIPES.equals(mOptionSelected)) {
+                        hideProgressBar();
+                        if (favoriteRecipes == null || favoriteRecipes.size() == 0) {
+                            showNoFavElements();
+                        }
+                        mFavoriteListAdapter.submitList(favoriteRecipes);
+                        if (mCurrentFavRecipeRecyclerViewState != null) {
+                            mGridLayoutManager.onRestoreInstanceState(mCurrentFavRecipeRecyclerViewState);
+                        }
+                    }
+                });
+                recipesRecyclerView.setAdapter(mFavoriteListAdapter);
+            }
         });
-        initRecyclerview();
+        mRecipesViewModel.getFavoriteRecipeListById().observe(Objects.requireNonNull(getActivity()), favoriteElementListById -> {
+            if (favoriteElementListById != null && favoriteElementListById != mFavoriteElementListById) {
+                mFavoriteElementListById = favoriteElementListById;
+                mRecipesListAdapter.updateFavoriteElementListById(mFavoriteElementListById);
+            }
+        });
+
         return view;
     }
 
-    private void initRecyclerview() {
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState == null && mOptionSelected == null) {
+            mRecipesViewModel.getOptionSelected().setValue(Constants.ALL_RECIPES);
+        } else if (savedInstanceState != null) {
+            mCurrentFavRecipeRecyclerViewState = savedInstanceState.getParcelable(Constants.CURRENT_RECIPE_POSITION);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(Constants.CURRENT_RECIPE_POSITION, mGridLayoutManager.onSaveInstanceState());
+    }
+
+    private void initAllRecipesRecyclerview() {
         mGridLayoutManager = new GridLayoutManager(mCtx, getNumberColumns());
         recipesRecyclerView.setLayoutManager(mGridLayoutManager);
-        recipesRecyclerView.setAdapter(mRecipesListAdapter);
+        mRecipesListAdapter = new RecipesListAdapter(this, mCtx, mFavoriteElementListById);
+    }
+
+    private void initFavoriteRecipesRecyclerView() {
+        mFavoriteListAdapter = new FavoriteListAdapter(this);
     }
 
     private int getNumberColumns() {
@@ -111,9 +188,57 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     }
 
     @Override
-    public void loadListAgain() {
-        mRecipesViewModel.getAgainSecondRecipeResponseLiveData().observe(this, secondRecipeResponses -> {
-            if(secondRecipeResponses != null && secondRecipeResponses.size() > 0) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.recipes_menu, menu);
+        mRecipesMenu = menu;
+        setMenuAfterRestoringState();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_all_recipes:
+                if (recipesRecyclerView.getAdapter() instanceof FavoriteListAdapter) {
+                    showAllRecipesOption();
+                    mRecipesViewModel.getOptionSelected().setValue(Constants.ALL_RECIPES);
+                }
+                break;
+            case R.id.nav_fav_recipes:
+                if (recipesRecyclerView.getAdapter() instanceof RecipesListAdapter) {
+                    showFavoriteRecipesOption();
+                    mRecipesViewModel.getOptionSelected().setValue(Constants.FAV_RECIPES);
+                }
+                break;
+        }
+        hideNoElements();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setMenuAfterRestoringState() {
+        if (mOptionSelected != null) {
+            if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
+                showAllRecipesOption();
+            } else {
+                showFavoriteRecipesOption();
+            }
+        }
+    }
+
+    private void showAllRecipesOption() {
+        mRecipesMenu.findItem(R.id.nav_all_recipes_label).setVisible(true);
+        mRecipesMenu.findItem(R.id.nav_fav_recipes_label).setVisible(false);
+    }
+
+    private void showFavoriteRecipesOption() {
+        mRecipesMenu.findItem(R.id.nav_all_recipes_label).setVisible(false);
+        mRecipesMenu.findItem(R.id.nav_fav_recipes_label).setVisible(true);
+    }
+
+    @Override
+    public void loadAllListAgain() {
+        mRecipesViewModel.getAgainSecondRecipeResponsePagedList().observe(Objects.requireNonNull(getActivity()), secondRecipeResponses -> {
+            if (secondRecipeResponses != null && secondRecipeResponses.size() > 0) {
                 mRecipesListAdapter.submitList(secondRecipeResponses);
             }
         });
@@ -122,11 +247,13 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void showProgressBar() {
         loadingProgressBar.setVisibility(View.VISIBLE);
+        edamamLogo.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
         loadingProgressBar.setVisibility(View.GONE);
+        edamamLogo.setVisibility(View.GONE);
     }
 
     @Override
@@ -135,11 +262,16 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
         retryButton.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void showNoFavElements() {
+        noRecipesTextView.setVisibility(View.VISIBLE);
+    }
+
     @OnClick(R.id.btn_retry)
     public void OnRetryPressed() {
         hideNoElements();
         showProgressBar();
-        loadListAgain();
+        loadAllListAgain();
     }
 
     public void hideNoElements() {
@@ -149,7 +281,24 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
 
     @Override
     public void showRecipeDetails(Recipe selectedRecipe) {
-        mRecipesViewModel.getSelectedRecipe().setValue(selectedRecipe);
         mRecipesViewModel.getFragmentDetailToReplace().setValue(Constants.RECIPE_DETAILS);
+        mRecipesViewModel.getSelectedRecipe().setValue(selectedRecipe);
+        mRecipesViewModel.getOptionSelected().removeObservers(Objects.requireNonNull(getActivity()));
+        mRecipesViewModel.getFavoriteRecipeListById().removeObservers(getActivity());
+    }
+
+    @Override
+    public void deleteFavoriteRecipe(FavoriteRecipe favoriteRecipe) {
+        mRecipesViewModel.deleteFavoriteRecipe(favoriteRecipe);
+    }
+
+    @Override
+    public void deleteFavoriteRecipeByWeb(String webRecipe) {
+        mRecipesViewModel.deleteFavoriteRecipeByWeb(webRecipe);
+    }
+
+    @Override
+    public void insertFavoriteRecipe(FavoriteRecipe favoriteRecipe) {
+        mRecipesViewModel.insertFavoriteRecipe(favoriteRecipe);
     }
 }
