@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
-        android:text="@string/buy"
+        android:text="@string/list"
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintBottom_toBottomOf="@id/tv_ingredient"
         app:layout_constraintEnd_toEndOf="parent"

@@ -19,7 +19,7 @@
     <!-- recipes -->
     <string name="servings">Servings:</string>
     <string name="ingredients">Ingredients:</string>
-    <string name="buy">Buy?</string>
+    <string name="list">List</string>
     <string name="steps">Steps</string>
     <string name="details">Details</string>
     <string name="steps_provided">Steps author:</string>
