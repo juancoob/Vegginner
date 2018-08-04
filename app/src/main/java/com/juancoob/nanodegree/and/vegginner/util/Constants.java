@@ -23,7 +23,10 @@ public final class Constants {
     // Recipe menu
     public static final String ALL_RECIPES = "allRecipes";
     public static final String FAV_RECIPES = "favRecipes";
-    public static final String OPTION_SELECTED = "optionSelected";
+
+    // RecyclerView positions
+    public static final String CURRENT_RECIPE_POSITION = "currentFavRecipePosition";
+    public static final String CURRENT_INGREDIENT_POSITION = "currentIngredientPosition";
 
     // Network states
     public static final String SUCCESS = "success";
