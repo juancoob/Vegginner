@@ -32,6 +32,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * This class is the main activity which manages fragments using a drawer
+ *
+ * Created by Juan Antonio Cobos Obrero on 21/07/18.
+ */
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.t_main)
@@ -50,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public VegginnerViewModelFactory vegginnerViewModelFactory;
 
     private RecipesViewModel mRecipesViewModel;
-
     private boolean mBackToMainWhenPressBack;
 
     @Override
@@ -147,12 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mainDrawerLayout.closeDrawers();
         } else if (mBackToMainWhenPressBack) {
-            removeFragmentFromTheStack();
-            mBackToMainWhenPressBack = false;
-            initFragmentDetailToReplace();
-            showToolbar();
-            setToolbar();
-            unlockDrawer();
+            comeBackToMainFragment();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.exit_dialog_title)
@@ -163,6 +163,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     })
                     .setNegativeButton(R.string.no, (dialogInterface, i) -> dialogInterface.dismiss()).show();
         }
+    }
+
+    private void comeBackToMainFragment() {
+        removeFragmentFromTheStack();
+        initFragmentDetailToReplace();
+        showToolbar();
+        setToolbar();
+        unlockDrawer();
+        mBackToMainWhenPressBack = false;
     }
 
     private void hideToolbar() {
