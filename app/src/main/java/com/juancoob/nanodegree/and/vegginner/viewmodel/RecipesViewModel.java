@@ -149,35 +149,19 @@ public class RecipesViewModel extends ViewModel {
 
     // Ingredient repository methods
 
-    public LiveData<List<Ingredient>> getIngredientList() {
-        return mIngredientRepository.getIngredientList();
+    public LiveData<List<Ingredient>> getIngredientListFromShoppingList() {
+        return mIngredientRepository.getIngredientListFromShoppingList();
     }
 
-    public LiveData<List<String>> getIngredientNameList() {
-        return mIngredientRepository.getIngredientNameList();
-    }
-
-    public List<Ingredient> getIngredientListWidget() {
-        return mIngredientRepository.getIngredientListWidget();
+    public LiveData<List<String>> getIngredientNameListFromShoppingList() {
+        return mIngredientRepository.getIngredientNameListFromShoppingList();
     }
 
     public void insertIngredient(Ingredient ingredient) {
         mIngredientRepository.insertIngredient(ingredient);
     }
 
-    public LiveData<Ingredient> getIngredient(String ingredientName) {
-        return mIngredientRepository.getIngredient(ingredientName);
-    }
-
     public void deleteIngredientByName(String ingredientName) {
         mIngredientRepository.deleteIngredientByName(ingredientName);
-    }
-
-    public void deleteAllIngredientsBought(List<Ingredient> ingredientList) {
-        mIngredientRepository.deleteAllIngredientsBought(ingredientList);
-    }
-
-    public void updateIngredient(Ingredient ingredient, boolean isBought) {
-        mIngredientRepository.updateIngredient(ingredient, isBought);
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialKeyguardLayout="@layout/vegginner_shopping_list"
+    android:initialLayout="@layout/vegginner_shopping_list"
+    android:minHeight="@dimen/widget_min_height"
+    android:minWidth="@dimen/widget_min_width"
+    android:previewImage="@drawable/vegginner_widget_preview"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="@integer/widget_update_time_millis"
+    android:widgetCategory="home_screen" />

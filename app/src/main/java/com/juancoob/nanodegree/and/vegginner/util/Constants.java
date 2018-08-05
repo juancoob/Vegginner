@@ -48,4 +48,10 @@ public final class Constants {
     public static final String BASE_URL_RECIPE = "https://api.edamam.com/";
     public static final String QUERY_URL_RECIPE = "vegan";
     public static final String EXCLUDED_RECIPE = "soy";
+
+    // Widget
+    public static final String CLEAR_ACTION = "clearAction";
+    public static final String BOUGHT_ACTION = "boughtAction";
+    public static final String EXTRA_INGREDIENT_ID = "extraIngredient";
+    public static final String EXTRA_IS_BOUGHT = "extraIsBought";
 }

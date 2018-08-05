@@ -24,40 +24,32 @@ public class IngredientRepository {
         mAppExecutors = appExecutors;
     }
 
-    public LiveData<List<Ingredient>> getIngredientList() {
-        return mIngredientDao.getIngredientList();
+    public LiveData<List<Ingredient>> getIngredientListFromShoppingList() {
+        return mIngredientDao.getIngredientListFromShoppingList();
     }
 
-    public LiveData<List<String>> getIngredientNameList() {
-        return mIngredientDao.getIngredientNameList();
+    public LiveData<List<String>> getIngredientNameListFromShoppingList() {
+        return mIngredientDao.getIngredientNameListFromShoppingList();
     }
 
-    public List<Ingredient> getIngredientListWidget() {
-        return mIngredientDao.getIngredientListWidget();
+    public List<Ingredient> getIngredientListForWidgetFromShoppingList() {
+        return mIngredientDao.getIngredientListForWidgetFromShoppingList();
     }
 
     public void insertIngredient(Ingredient ingredient) {
         mAppExecutors.getDiskIO().execute(() -> mIngredientDao.insertIngredient(ingredient));
     }
 
-    public LiveData<Ingredient> getIngredient(String ingredientName) {
-        return mIngredientDao.getIngredient(ingredientName);
-    }
-
     public void deleteIngredientByName(String ingredientName) {
         mAppExecutors.getDiskIO().execute(() -> mIngredientDao.deleteIngredientByName(ingredientName));
     }
 
-    public void deleteAllIngredientsBought(List<Ingredient> ingredientList) {
-        mAppExecutors.getDiskIO().execute(() -> {
-            for (Ingredient ingredient : ingredientList) {
-                mIngredientDao.deleteIngredient(ingredient);
-            }
-        });
+    public void updateIngredientFromWidgetShoppingList(int ingredientId, boolean isBought) {
+        mAppExecutors.getDiskIO().execute(() ->
+                mIngredientDao.updateIngredientFromWidgetShoppingList(ingredientId, isBought));
     }
 
-    public void updateIngredient(Ingredient ingredient, boolean isBought) {
-        mAppExecutors.getDiskIO().execute(() ->
-                mIngredientDao.updateIngredient(isBought, ingredient.getIngredientName()));
+    public void deleteBoughtIngredientsFromWidgetShoppingList() {
+        mAppExecutors.getDiskIO().execute(mIngredientDao::deleteBoughtIngredientsFromWidgetShoppingList);
     }
 }

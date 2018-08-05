@@ -26,6 +26,19 @@
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
 
+        <receiver android:name=".widget.VegginnerShoppingListProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vegginner_shopping_list_info" />
+        </receiver>
+
+        <service android:name=".widget.VegginnerShoppingListService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
     </application>
 
 </manifest>

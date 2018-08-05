@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_shopping_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="5">
+
+    <TextView
+        android:id="@+id/tv_ingredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4.5"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_line_number"
+        android:padding="@dimen/default_margin"
+        android:textColor="@color/colorPrimaryText"
+        tools:text="@string/mock_sentence" />
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.5"
+        android:contentDescription="@string/element_bought"
+        android:src="@drawable/ic_check_24dp"
+        android:visibility="gone" />
+
+</LinearLayout>

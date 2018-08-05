@@ -24,33 +24,27 @@ public interface IngredientDao {
      * @return  LiveData ingredient list
      */
     @Query("SELECT * FROM Ingredient")
-    LiveData<List<Ingredient>> getIngredientList();
+    LiveData<List<Ingredient>> getIngredientListFromShoppingList();
 
     /**
      * Get all ingredient names from the shopping list
      * @return  LiveData ingredient list
      */
     @Query("SELECT mIngredientName FROM Ingredient")
-    LiveData<List<String>> getIngredientNameList();
+    LiveData<List<String>> getIngredientNameListFromShoppingList();
 
     /**
      * Get all ingredients from the shopping list for the widget
      * @return  Ingredient list
      */
     @Query("SELECT * FROM Ingredient")
-    List<Ingredient> getIngredientListWidget();
+    List<Ingredient> getIngredientListForWidgetFromShoppingList();
 
     /**
      * Insert ingredient
      */
     @Insert(onConflict = REPLACE)
     void insertIngredient(Ingredient ingredient);
-
-    /**
-     * Get an ingredient object by its name
-     */
-    @Query("SELECT * FROM Ingredient WHERE mIngredientName = :ingredient")
-    LiveData<Ingredient> getIngredient(String ingredient);
 
     /**
      * Delete an ingredient
@@ -67,13 +61,13 @@ public interface IngredientDao {
     /**
     * Update ingredients as bought or not
     */
-    @Query("UPDATE Ingredient SET mIsBought = :isBought WHERE mIngredientName = :ingredient")
-    void updateIngredient(boolean isBought, String ingredient);
+    @Query("UPDATE Ingredient SET mIsBought = :isBought WHERE mIngredientId = :ingredientId")
+    void updateIngredientFromWidgetShoppingList(int ingredientId, boolean isBought);
 
     /**
      * Remove all ingredients bought
      */
     @Query("DELETE FROM Ingredient WHERE mIsBought = 1")
-    void deleteBoughtIngredients();
+    void deleteBoughtIngredientsFromWidgetShoppingList();
 
 }

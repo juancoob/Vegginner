@@ -21,6 +21,7 @@ import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.VegginnerViewModelFactory;
+import com.juancoob.nanodegree.and.vegginner.widget.VegginnerShoppingListProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,7 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
             servingsTextView.setText(String.valueOf(mRecipe.getRecipeServings()));
             mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
             initRecyclerView(mRecipe.getIngredientList(), mIngredientsFromShoppingList);
-            mRecipesViewModel.getIngredientNameList().observe(Objects.requireNonNull(getActivity()), ingredientsFromShoppingList -> {
+            mRecipesViewModel.getIngredientNameListFromShoppingList().observe(Objects.requireNonNull(getActivity()), ingredientsFromShoppingList -> {
                 if (ingredientsFromShoppingList != null) {
                     mIngredientsFromShoppingList.clear();
                     mIngredientsFromShoppingList.addAll(ingredientsFromShoppingList);
@@ -121,11 +122,17 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
     public void addIngredientToTheShoppingList(String ingredientName) {
         mIngredient = new Ingredient(ingredientName, false);
         mRecipesViewModel.insertIngredient(mIngredient);
+        updateWidget();
     }
 
     @Override
     public void removeIngredientFromTheShoppingList(String ingredientName) {
         mRecipesViewModel.deleteIngredientByName(ingredientName);
+        updateWidget();
+    }
+
+    private void updateWidget() {
+        VegginnerShoppingListProvider.updateAppWidget(mCtx);
     }
 
     @Override
@@ -145,6 +152,6 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mRecipesViewModel.getIngredientNameList().removeObservers(Objects.requireNonNull(getActivity()));
+        mRecipesViewModel.getIngredientNameListFromShoppingList().removeObservers(Objects.requireNonNull(getActivity()));
     }
 }
