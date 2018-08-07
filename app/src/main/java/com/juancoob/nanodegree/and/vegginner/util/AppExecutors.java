@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 /**
  * This class is the global executor pools for the whole app (Based on GithubBrowser example)
+ * https://github.com/googlesamples/android-architecture-components/blob/master/GithubBrowserSample/app/src/main/java/com/android/example/github/AppExecutors.kt
  *
  * Created by Juan Antonio Cobos Obrero on 2/08/18.
  */
