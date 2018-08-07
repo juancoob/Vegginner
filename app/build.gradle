@@ -98,8 +98,11 @@ dependencies {
     // Tests
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_library_version"
-    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestImplementation "com.android.support.test:runner:$test_version"
+    androidTestImplementation "com.android.support.test:rules:$test_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core_version"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_core_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_core_version"
 }
 
 // Dependencies for basic libraries required for the google services
