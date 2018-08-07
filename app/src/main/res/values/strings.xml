@@ -78,4 +78,9 @@
     <string name="shopping_list">Shopping list</string>
     <string name="delete_bought_elements">Clear\n purchased</string>
 
+    <!-- google maps -->
+    <string name="here">You are here</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_GOOGLE_MAP_KEY</string>
+
+
 </resources>
