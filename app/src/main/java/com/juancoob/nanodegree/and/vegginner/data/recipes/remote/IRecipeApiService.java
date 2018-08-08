@@ -13,8 +13,6 @@ import retrofit2.http.Query;
  */
 public interface IRecipeApiService {
 
-    //https://api.edamam.com/search?q=vegan&app_id=610e2e22&app_key=68a4b20b60fbdef2990300314806e027&excluded=soy&to=31
-
     @GET("search")
     Call<FirstRecipeResponse> getFirstRecipeResponse(@Query("q") String query,
                                                            @Query("app_id") String appId,
