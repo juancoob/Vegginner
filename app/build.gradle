@@ -23,6 +23,7 @@ android {
         applicationVariants.all {
             buildConfigField "String", "EDAMAM_APP_ID", "\"" + "YOUR_EDAMAM_APP_ID" + "\""
             buildConfigField "String", "EDAMAM_APP_KEY", "\"" + "YOUR_EDAMAM_APP_KEY" + "\""
+            buildConfigField "String", "PLACE_API_KEY", "\"" + "YOUR_PLACE_API_KEY" + "\""
         }
         release {
             minifyEnabled false
