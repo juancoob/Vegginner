@@ -47,7 +47,7 @@ public class VegginnerApp extends Application {
                 .build();
     }
 
-    public VegginnerRoomComponent getRecipeComponent() {
+    public VegginnerRoomComponent getVegginnerRoomComponent() {
         return mVegginnerRoomComponent;
     }
 }
