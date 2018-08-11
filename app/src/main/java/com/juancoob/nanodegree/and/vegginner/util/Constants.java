@@ -54,4 +54,17 @@ public final class Constants {
     public static final String BOUGHT_ACTION = "boughtAction";
     public static final String EXTRA_INGREDIENT_ID = "extraIngredient";
     public static final String EXTRA_IS_BOUGHT = "extraIsBought";
+
+    // Places
+    public static final int REQUEST_ACCESS_FINE_LOCATION = 123;
+    public static final int REQUEST_CONNECTION_FAILURE = 404;
+    public static final int UPDATE_LOCATION_INTERVAL = 10000;
+    public static final int FASTEST_UPDATE_LOCATION_INTERVAL = 5000;
+    public static final String SPINNER_POSITION = "spinnerSelection";
+    public static final String LIST_POSITION = "listPosition";
+    public static final String CURRENT_LOCATION = "currentLocation";
+    public static final String BASE_URL_PLACES = "https://maps.googleapis.com/maps/api/place/nearbysearch/";
+    public static final int BASE_RADIUS = 1500;
+    public static final String KEYWORD = "vegan";
+
 }
