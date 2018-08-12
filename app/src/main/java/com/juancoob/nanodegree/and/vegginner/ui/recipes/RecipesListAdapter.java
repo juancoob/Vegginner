@@ -29,7 +29,7 @@ import butterknife.OnClick;
 
 /**
  * This class is the recyclerview's adapter to list recipes on RecipesFragment
- *
+ * <p>
  * Created by Juan Antonio Cobos Obrero on 25/07/18.
  */
 public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, RecyclerView.ViewHolder> implements IAlertDialogCallback {
@@ -106,10 +106,12 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
     public void checkInitialLoading(NetworkState networkState) {
         if (networkState != null && networkState.getState().equals(NetworkState.Status.FAILED)) {
             mRetryLoadingCallback.hideProgressBar();
-            CheckInternetConnection.showDialog(this, mCtx, R.string.something_wrong_title, R.string.something_wrong_message, R.string.retry, R.string.no);
-        } else if (networkState != null && networkState.getState().equals(NetworkState.Status.NO_INTERNET)) {
-            mRetryLoadingCallback.hideProgressBar();
-            CheckInternetConnection.showDialog(this, mCtx, R.string.something_wrong_title, R.string.something_wrong_message, R.string.retry, R.string.no);
+
+            if (CheckInternetConnection.isConnected(mCtx)) {
+                CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.something_wrong_title, R.string.something_wrong_message, R.string.retry, R.string.no);
+            } else {
+                CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.no_internet_title, R.string.no_internet_message, R.string.retry, R.string.no);
+            }
         }
     }
 
@@ -160,7 +162,7 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
             Picasso.get().load(secondRecipeResponse.getRecipe().getRecipeImage()).placeholder(R.mipmap.ic_launcher_round).into(recipeImageView);
             recipeTitleTextView.setText(secondRecipeResponse.getRecipe().getRecipeName());
             servingsTextView.setText(String.valueOf(secondRecipeResponse.getRecipe().getRecipeServings()));
-            if(mFavoriteElementListById.contains(secondRecipeResponse.getRecipe().getRecipeWeb())) {
+            if (mFavoriteElementListById.contains(secondRecipeResponse.getRecipe().getRecipeWeb())) {
                 Picasso.get().load(R.drawable.ic_starred_24dp).placeholder(R.drawable.ic_starred_24dp).noFade().into(likeButtonImageView);
             } else {
                 Picasso.get().load(R.drawable.ic_star_border_24dp).placeholder(R.drawable.ic_star_border_24dp).noFade().into(likeButtonImageView);
@@ -169,7 +171,7 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
 
         @OnClick(R.id.iv_like_button)
         public void OnClickFavoriteButton() {
-            if(mFavoriteElementListById.contains(getItem(getAdapterPosition()).getRecipe().getRecipeWeb())) {
+            if (mFavoriteElementListById.contains(getItem(getAdapterPosition()).getRecipe().getRecipeWeb())) {
                 mRetryLoadingCallback.deleteFavoriteRecipeByWeb(getItem(getAdapterPosition()).getRecipe().getRecipeWeb());
             } else {
                 mRecipe = getItem(getAdapterPosition()).getRecipe();
@@ -210,13 +212,13 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
             if (networkState != null && networkState.getState() == NetworkState.Status.FAILED) {
                 noResultsTextView.setVisibility(View.VISIBLE);
                 noResultsTextView.setText(mCtx.getString(R.string.no_results));
-                CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.no_internet_title, R.string.no_internet_message, R.string.retry, R.string.no);
+                if (CheckInternetConnection.isConnected(mCtx)) {
+                    CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.something_wrong_title, R.string.something_wrong_message, R.string.retry, R.string.no);
+                } else {
+                    CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.no_internet_title, R.string.no_internet_message, R.string.retry, R.string.no);
+                }
             } else {
                 noResultsTextView.setVisibility(View.GONE);
-            }
-
-            if (networkState != null && networkState.getState() == NetworkState.Status.NO_INTERNET) {
-                CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.no_internet_title, R.string.no_internet_message, R.string.retry, R.string.no);
             }
         }
     }
