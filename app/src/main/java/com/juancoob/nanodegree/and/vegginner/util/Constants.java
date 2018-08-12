@@ -14,6 +14,7 @@ public final class Constants {
     public static final String RECIPE_DETAILS = "recipeDetails";
     public static final String PLACES = "places";
     public static final String EVENTS = "events";
+    public static final String COMING_SOON = "comingSoon";
 
     // Recipe ViewPager
     public static final int NUM_RECIPE_DETAIL_PAGES = 2;
