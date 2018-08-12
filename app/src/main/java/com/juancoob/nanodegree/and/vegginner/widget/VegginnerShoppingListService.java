@@ -46,7 +46,7 @@ public class VegginnerShoppingListService extends RemoteViewsService {
 
         @Override
         public void onCreate() {
-            ((VegginnerApp) mCtx).getRecipeComponent().injectVegginnerRemoteViewFactory(this);
+            ((VegginnerApp) mCtx).getVegginnerRoomComponent().injectVegginnerRemoteViewFactory(this);
         }
 
         @Override

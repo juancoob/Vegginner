@@ -79,7 +79,7 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp) mCtx.getApplicationContext()).getRecipeComponent().injectRecipeIngredientsServingsFragment(this);
+        ((VegginnerApp) mCtx.getApplicationContext()).getVegginnerRoomComponent().injectRecipeIngredientsServingsFragment(this);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             mRecipe = bundle.getParcelable(Constants.RECIPE);

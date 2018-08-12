@@ -83,7 +83,7 @@ public class RecipeDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp) mCtx.getApplicationContext()).getRecipeComponent().injectRecipeDetailsSection(this);
+        ((VegginnerApp) mCtx.getApplicationContext()).getVegginnerRoomComponent().injectRecipeDetailsSection(this);
     }
 
     @Nullable

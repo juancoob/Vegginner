@@ -91,7 +91,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp) Objects.requireNonNull(getActivity()).getApplication()).getRecipeComponent().injectRecipesSection(this);
+        ((VegginnerApp) mCtx.getApplicationContext()).getVegginnerRoomComponent().injectRecipesSection(this);
         mFavoriteElementListById = new ArrayList<>();
     }
 

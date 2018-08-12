@@ -17,8 +17,6 @@ import com.juancoob.nanodegree.and.vegginner.util.Constants;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 /**
  * Implementation of App Widget functionality.
  *
@@ -34,7 +32,7 @@ public class VegginnerShoppingListProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        ((VegginnerApp)context.getApplicationContext()).getRecipeComponent().injectVegginnerShoppingListProvider(this);
+        ((VegginnerApp)context.getApplicationContext()).getVegginnerRoomComponent().injectVegginnerShoppingListProvider(this);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
