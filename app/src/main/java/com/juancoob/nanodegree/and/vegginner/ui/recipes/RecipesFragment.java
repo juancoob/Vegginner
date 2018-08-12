@@ -25,6 +25,7 @@ import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipe;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
+import com.juancoob.nanodegree.and.vegginner.util.CheckInternetConnection;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.RecipesViewModel;
 import com.juancoob.nanodegree.and.vegginner.viewmodel.VegginnerViewModelFactory;
@@ -164,6 +165,9 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(Constants.CURRENT_RECIPE_POSITION, mGridLayoutManager.onSaveInstanceState());
+        if(CheckInternetConnection.getAlertDialog() != null) {
+            CheckInternetConnection.getAlertDialog().dismiss();
+        }
     }
 
     private void initAllRecipesRecyclerview() {
