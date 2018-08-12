@@ -162,7 +162,6 @@ public class PlacesFrament extends Fragment implements OnMapReadyCallback,
                 AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
                 builder.setTitle(R.string.location_dialog_title)
                         .setMessage(R.string.location_dialog_message)
-                        .setCancelable(false)
                         .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
                             dialogInterface.dismiss();
                             requestPermissions(new String[]{ACCESS_FINE_LOCATION}, Constants.REQUEST_ACCESS_FINE_LOCATION);
@@ -431,6 +430,9 @@ public class PlacesFrament extends Fragment implements OnMapReadyCallback,
         outState.putInt(Constants.SPINNER_POSITION, placeTypesAppCompatSpinner.getSelectedItemPosition());
         outState.putParcelable(Constants.LIST_POSITION, mLinearLayoutManager.onSaveInstanceState());
         outState.putParcelable(Constants.CURRENT_LOCATION, mCurrentLocation);
+        if(CheckInternetConnection.getAlertDialog() != null) {
+            CheckInternetConnection.getAlertDialog().dismiss();
+        }
     }
 
     @Override
