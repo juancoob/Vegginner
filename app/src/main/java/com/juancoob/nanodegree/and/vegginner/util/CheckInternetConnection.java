@@ -39,10 +39,13 @@ public class CheckInternetConnection {
                     .setNegativeButton(negativeTextId, (dialogInterface, i) -> {
                         dialogInterface.dismiss();
                         callback.showNegativeResult();
-                    })
-                    .setCancelable(false);
+                    });
             alertDialog = builder.create();
             alertDialog.show();
         }
+    }
+
+    public static AlertDialog getAlertDialog() {
+        return alertDialog;
     }
 }
