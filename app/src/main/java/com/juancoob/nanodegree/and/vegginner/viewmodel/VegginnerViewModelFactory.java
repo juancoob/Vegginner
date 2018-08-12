@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.juancoob.nanodegree.and.vegginner.data.places.ISearchApiService;
+import com.juancoob.nanodegree.and.vegginner.data.places.PlaceRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipeRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.ingredient.IngredientRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
@@ -19,15 +21,21 @@ public class VegginnerViewModelFactory implements ViewModelProvider.Factory {
 
     private FavoriteRecipeRepository mFavoriteRecipeRepository;
     private IngredientRepository mIngredientRepository;
+    private PlaceRepository mPlaceRepository;
     private IRecipeApiService mRecipeApiService;
+    private ISearchApiService mSearchApiService;
 
     @Inject
     public VegginnerViewModelFactory(FavoriteRecipeRepository favoriteRecipeRepository,
                                      IngredientRepository ingredientRepository,
-                                     IRecipeApiService recipeApiService) {
+                                     PlaceRepository placeRepository,
+                                     IRecipeApiService recipeApiService,
+                                     ISearchApiService searchApiService) {
         mFavoriteRecipeRepository = favoriteRecipeRepository;
         mIngredientRepository = ingredientRepository;
+        mPlaceRepository = placeRepository;
         mRecipeApiService = recipeApiService;
+        mSearchApiService = searchApiService;
     }
 
     @NonNull
@@ -36,6 +44,8 @@ public class VegginnerViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if(modelClass.isAssignableFrom(RecipesViewModel.class)) {
             return (T) new RecipesViewModel(mFavoriteRecipeRepository, mIngredientRepository, mRecipeApiService);
+        } if(modelClass.isAssignableFrom(PlacesViewModel.class)) {
+            return (T) new PlacesViewModel(mSearchApiService, mPlaceRepository);
         } else {
             throw new IllegalArgumentException("ViewModel " + modelClass + " not found");
         }
