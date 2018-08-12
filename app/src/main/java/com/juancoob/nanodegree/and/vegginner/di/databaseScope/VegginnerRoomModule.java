@@ -5,6 +5,8 @@ import android.app.Application;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.persistence.room.Room;
 
+import com.juancoob.nanodegree.and.vegginner.data.places.ISearchApiService;
+import com.juancoob.nanodegree.and.vegginner.data.places.PlaceRepository;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipeDao;
 import com.juancoob.nanodegree.and.vegginner.data.VegginnerDatabase;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipeRepository;
@@ -38,8 +40,16 @@ public class VegginnerRoomModule {
     @Singleton
     ViewModelProvider.Factory provideViewModelFactory(FavoriteRecipeRepository favoriteRecipeRepository,
                                                       IngredientRepository ingredientRepository,
-                                                      IRecipeApiService recipeApiService) {
-        return new VegginnerViewModelFactory(favoriteRecipeRepository, ingredientRepository, recipeApiService);
+                                                      PlaceRepository placeRepository,
+                                                      IRecipeApiService recipeApiService,
+                                                      ISearchApiService searchApiService) {
+        return new VegginnerViewModelFactory(favoriteRecipeRepository, ingredientRepository, placeRepository, recipeApiService, searchApiService);
+    }
+
+    @Provides
+    @RoomScope
+    PlaceRepository providePlaceRepository() {
+        return new PlaceRepository();
     }
 
     @Provides
