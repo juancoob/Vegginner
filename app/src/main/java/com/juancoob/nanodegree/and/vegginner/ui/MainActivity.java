@@ -16,11 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.ui.beginning.BeginningFragment;
+import com.juancoob.nanodegree.and.vegginner.ui.comingSoon.ComingSoonFragment;
 import com.juancoob.nanodegree.and.vegginner.ui.places.PlacesFrament;
 import com.juancoob.nanodegree.and.vegginner.ui.recipeDetails.RecipeDetailsFragment;
 import com.juancoob.nanodegree.and.vegginner.ui.recipes.RecipesFragment;
@@ -127,10 +127,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragmentToActivity(getSupportFragmentManager(), BeginningFragment.getInstance(), R.id.fl_main_content, Constants.BEGINNING, false);
                 break;
             case R.id.nav_advices:
-                Toast.makeText(MainActivity.this, "Advices", Toast.LENGTH_SHORT).show();
+                replaceFragmentToActivity(getSupportFragmentManager(), ComingSoonFragment.getInstance(), R.id.fl_main_content, Constants.COMING_SOON, false);
                 break;
             case R.id.nav_equivalencies:
-                Toast.makeText(MainActivity.this, "Equivalencies", Toast.LENGTH_SHORT).show();
+                replaceFragmentToActivity(getSupportFragmentManager(), ComingSoonFragment.getInstance(), R.id.fl_main_content, Constants.COMING_SOON, false);
                 break;
             case R.id.nav_recipes:
                 replaceFragmentToActivity(getSupportFragmentManager(), RecipesFragment.getInstance(), R.id.fl_main_content, Constants.RECIPES, false);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragmentToActivity(getSupportFragmentManager(), PlacesFrament.getInstance(), R.id.fl_main_content, Constants.PLACES, false);
                 break;
             case R.id.nav_events:
-                Toast.makeText(MainActivity.this, "Events", Toast.LENGTH_SHORT).show();
+                replaceFragmentToActivity(getSupportFragmentManager(), ComingSoonFragment.getInstance(), R.id.fl_main_content, Constants.COMING_SOON, false);
                 break;
         }
 
