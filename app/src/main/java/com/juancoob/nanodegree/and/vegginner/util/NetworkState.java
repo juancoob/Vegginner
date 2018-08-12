@@ -34,8 +34,7 @@ public class NetworkState {
     public enum Status {
         RUNNING,
         SUCCESS,
-        FAILED,
-        NO_INTERNET
+        FAILED
     }
 
 }
