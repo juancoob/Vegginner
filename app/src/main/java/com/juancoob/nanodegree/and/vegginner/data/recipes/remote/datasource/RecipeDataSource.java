@@ -67,7 +67,7 @@ public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResp
                     @Override
                     public void onFailure(@NonNull Call<FirstRecipeResponse> call, @NonNull Throwable throwable) {
                         // No internet connection
-                        mInitialLoading.postValue(new NetworkState(NetworkState.Status.NO_INTERNET, throwable.getMessage()));
+                        mInitialLoading.postValue(new NetworkState(NetworkState.Status.FAILED, throwable.getMessage()));
                     }
                 });
 
@@ -102,7 +102,7 @@ public class RecipeDataSource extends PageKeyedDataSource<Long, SecondRecipeResp
                     @Override
                     public void onFailure(@NonNull Call<FirstRecipeResponse> call, @NonNull Throwable throwable) {
                         // No internet connection
-                        mNetworkState.postValue(new NetworkState(NetworkState.Status.NO_INTERNET, throwable.getMessage()));
+                        mNetworkState.postValue(new NetworkState(NetworkState.Status.FAILED, throwable.getMessage()));
                     }
                 });
     }
