@@ -1,6 +1,7 @@
 package com.juancoob.nanodegree.and.vegginner.di;
 
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
+import com.juancoob.nanodegree.and.vegginner.data.places.ISearchApiService;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
 
 import javax.inject.Singleton;
@@ -20,5 +21,7 @@ public interface VegginnerAppComponent {
     VegginnerApp getVegginnerApp();
 
     IRecipeApiService getRecipeApiService();
+
+    ISearchApiService getSearchApiService();
 
 }

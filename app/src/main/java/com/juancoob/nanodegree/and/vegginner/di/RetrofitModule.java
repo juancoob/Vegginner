@@ -1,5 +1,6 @@
 package com.juancoob.nanodegree.and.vegginner.di;
 
+import com.juancoob.nanodegree.and.vegginner.data.places.ISearchApiService;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.IRecipeApiService;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
 
@@ -25,13 +26,31 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    IRecipeApiService provideRecipeApiService(Retrofit retrofit) {
-        return retrofit.create(IRecipeApiService.class);
+    ISearchApiService provideSearchApiService(@RetrofitForPlaces Retrofit retrofit) {
+        return retrofit.create(ISearchApiService.class);
     }
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(OkHttpClient.Builder httpClientBuilder) {
+    IRecipeApiService provideRecipeApiService(@RetrofitForRecipes Retrofit retrofit) {
+        return retrofit.create(IRecipeApiService.class);
+    }
+
+    @Provides
+    @RetrofitForPlaces
+    @Singleton
+    Retrofit provideRetrofitForPlaces(OkHttpClient.Builder httpClientBuilder) {
+        return new Retrofit.Builder().baseUrl(Constants.BASE_URL_PLACES)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(httpClientBuilder.build())
+                .build();
+    }
+
+    @Provides
+    @RetrofitForRecipes
+    @Singleton
+    Retrofit provideRetrofitForRecipes(OkHttpClient.Builder httpClientBuilder) {
         return new Retrofit.Builder().baseUrl(Constants.BASE_URL_RECIPE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
