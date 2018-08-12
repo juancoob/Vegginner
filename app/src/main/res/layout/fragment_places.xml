@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/default_margin">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mv_places"
+    <fragment
+        android:id="@+id/f_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
         app:layout_constraintBottom_toTopOf="@+id/g_places"
@@ -28,7 +29,10 @@
         style="@style/titleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
         android:text="@string/map_spinner_label"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/g_places" />
 
     <android.support.v7.widget.AppCompatSpinner
@@ -37,6 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/min_margin"
         android:layout_marginStart="@dimen/min_margin"
+        android:entries="@array/veg_friendly_array"
+        android:prompt="@string/veg_friendly_prompt"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_map_spinner_label"
         app:layout_constraintLeft_toRightOf="@+id/tv_map_spinner_label"
         app:layout_constraintStart_toEndOf="@+id/tv_map_spinner_label"
@@ -46,7 +53,7 @@
         android:id="@+id/rv_places"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero"
-        android:layout_marginTop="@dimen/default_margin"
+        android:scrollbars="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +62,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_map_spinner_label" />
 
+    <ProgressBar
+        android:id="@+id/pb_loading_places"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_places"
+        app:layout_constraintEnd_toEndOf="@+id/rv_places"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_places"
+        app:layout_constraintRight_toRightOf="@+id/rv_places"
+        app:layout_constraintStart_toStartOf="@+id/rv_places"
+        app:layout_constraintTop_toTopOf="@+id/rv_places" />
+
+    <ImageView
+        android:id="@+id/iv_powered_by_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/powered_google"
+        android:src="@drawable/powered_by_google_on_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_places"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-        android:id="@+id/tv_no_recipes"
+        android:id="@+id/tv_no_places"
         style="@style/titleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +99,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/rv_places"
         app:layout_constraintRight_toRightOf="@+id/rv_places"
         app:layout_constraintStart_toStartOf="@+id/rv_places"
-        app:layout_constraintTop_toTopOf="@+id/rv_places" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_map_spinner_label" />
 
     <Button
         android:id="@+id/btn_retry"
@@ -79,6 +111,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_no_recipes" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_no_places" />
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/allow_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f_map" />
 
 </android.support.constraint.ConstraintLayout>

@@ -12,13 +12,38 @@
         android:id="@+id/iv_place_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/image_to_decorate"
-        android:padding="@dimen/default_margin"
+        android:contentDescription="@string/place_type_image"
         android:src="@drawable/ic_place_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_place_rating"
+        app:layout_constraintEnd_toStartOf="@+id/g_item_place_vertical"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/g_item_place_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_place_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_rating_star_24dp"
+        android:drawableRight="@drawable/ic_rating_star_24dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/importantText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_place_icon"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_place_icon"
+        app:layout_constraintRight_toRightOf="@+id/iv_place_icon"
+        app:layout_constraintStart_toStartOf="@+id/iv_place_icon"
+        app:layout_constraintTop_toBottomOf="@+id/iv_place_icon"
+        tools:text="@string/mock_rating" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/g_item_place_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
 
     <TextView
         android:id="@+id/tv_place_name"
@@ -27,23 +52,23 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="@integer/max_line_number"
-        app:layout_constraintBottom_toBottomOf="@+id/g_item_place"
+        app:layout_constraintBottom_toBottomOf="@+id/g_item_place_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/iv_place_icon"
+        app:layout_constraintLeft_toRightOf="@+id/g_item_place_vertical"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_place_icon"
+        app:layout_constraintStart_toEndOf="@+id/g_item_place_vertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/mock_sentence" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/g_item_place"
+        android:id="@+id/g_item_place_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/tv_place_address"
+        android:id="@+id/tv_place_vicinity"
         android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -51,10 +76,10 @@
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/iv_place_icon"
+        app:layout_constraintLeft_toRightOf="@+id/g_item_place_vertical"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_place_icon"
-        app:layout_constraintTop_toTopOf="@+id/g_item_place"
+        app:layout_constraintStart_toEndOf="@+id/g_item_place_vertical"
+        app:layout_constraintTop_toTopOf="@+id/g_item_place_horizontal"
         tools:text="@string/mock_sentence" />
 
 </android.support.constraint.ConstraintLayout>
