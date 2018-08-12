@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.VegginnerApp;
 import com.juancoob.nanodegree.and.vegginner.ui.beginning.BeginningFragment;
+import com.juancoob.nanodegree.and.vegginner.ui.places.PlacesFrament;
 import com.juancoob.nanodegree.and.vegginner.ui.recipeDetails.RecipeDetailsFragment;
 import com.juancoob.nanodegree.and.vegginner.ui.recipes.RecipesFragment;
 import com.juancoob.nanodegree.and.vegginner.util.Constants;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((VegginnerApp) getApplication()).getRecipeComponent().injectMainActivity(this);
+        ((VegginnerApp) getApplication()).getVegginnerRoomComponent().injectMainActivity(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setToolbar();
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragmentToActivity(getSupportFragmentManager(), RecipesFragment.getInstance(), R.id.fl_main_content, Constants.RECIPES, false);
                 break;
             case R.id.nav_places:
-                Toast.makeText(MainActivity.this, "Places", Toast.LENGTH_SHORT).show();
+                replaceFragmentToActivity(getSupportFragmentManager(), PlacesFrament.getInstance(), R.id.fl_main_content, Constants.PLACES, false);
                 break;
             case R.id.nav_events:
                 Toast.makeText(MainActivity.this, "Events", Toast.LENGTH_SHORT).show();
