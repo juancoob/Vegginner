@@ -66,5 +66,6 @@ public final class Constants {
     public static final String BASE_URL_PLACES = "https://maps.googleapis.com/maps/api/place/nearbysearch/";
     public static final int BASE_RADIUS = 1500;
     public static final String KEYWORD = "vegan";
+    public static final int PLACES_PAGE_SIZE = 1;
 
 }
