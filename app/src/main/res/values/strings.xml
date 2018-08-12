@@ -16,6 +16,9 @@
     <string name="places">Places</string>
     <string name="events">Events</string>
 
+    <!-- beginning -->
+    <string name="welcome">Welcome to Vegginner! This is a functional prototype which is in development. The available sections are recipes where you could see them, list them as favorites and save some ingredients for the shopping list widget, and places where you could find out what kind of veg-friendly places are around you.</string>
+
     <!-- recipes -->
     <string name="servings">Servings:</string>
     <string name="ingredients">Ingredients:</string>
@@ -101,5 +104,7 @@
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_GOOGLE_MAP_KEY</string>
 
+    <!-- coming soon -->
+    <string name="coming_soon">Coming soon! Visit my repository <a href="https://github.com/juancoob/Vegginner">https://github.com/juancoob/Vegginner</a></string>
 
 </resources>
