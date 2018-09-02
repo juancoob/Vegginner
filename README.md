@@ -1,7 +1,7 @@
 ![Vegginner](app/src/main/res/drawable-nodpi/vegginner_with_text.png)
 
-Nowadays, we have already learnt nobody deserves to be discriminated against people by the color of their skin, sex, religion, ideology or sexual preference, but animals, on the mere fact that are not humans and are in our food chain, are not usually treated as beings with full rights.
-If you have already considered veganism to change your consumption habits, fight against climate change and take part of relieving the world in hunger in your everyday life: Vegginner is here to guide you.
+Nowadays, we have already learnt nobody deserves to be discriminated against people by the colour of their skin, sex, religion, ideology or sexual preference, but animals, on the mere fact that are not humans and are in our food chain, are not usually treated as beings with full rights.
+If you have already considered veganism to change your consumption habits, fight against climate change and take part in relieving the world in hunger in your everyday life: Vegginner is here to guide you.
 
 Features
 -----
@@ -11,7 +11,7 @@ Features
 This app is intended for people who are curious and/or willing to be vegan. It's still under development, but these are its main features:
 
 - [ ] Shows information about how we could change our habits.
-- [ ] Displays quick advices about how to tackle some common situations and questions.
+- [ ] Displays quick suggestions about how to tackle some common situations and questions.
 - [ ] Offers how to replace some animal products with vegan ones.
 - [x] Proposes some recipes to make.
 - [x] Marks in google maps some places to eat.
@@ -26,8 +26,8 @@ If you want to use Vegginner, you will need:
 - An APP and API key to get recipes from EDAMAM API. So, get them on Edamam's website selecting Recipe Search: https://developer.edamam.com/ and add them on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L24L25).
 - An API key from Google Places API to get veg-friendly places near you. Get It here: https://developers.google.com/places/web-service/get-api-key and put it on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L26).
 - An API key from Google Maps API to locate all Place API results. Get it here: https://developers.google.com/maps/documentation/android-sdk/signup and put it on [Strings resources](https://github.com/juancoob/Vegginner/blob/master/app/src/main/res/values/strings.xml#L105).
-- The google-services.json file on app folder sinchornizing the app using Firebase Crashlytics. Follow these steps: https://firebase.google.com/docs/crashlytics/get-started
-- Create a new keystore and fill these paramenters on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L14-L21).
+- The google-services.json file on app folder synchronizing the app using Firebase Crashlytics. Follow these steps: https://firebase.google.com/docs/crashlytics/get-started
+- Create a new keystore and fill these parameters on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L14-L21).
 
 
 Screenshots
