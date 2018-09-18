@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.juancoob.nanodegree.and.vegginner.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,7 +35,7 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
                                     Context context, List<String> ingredientList, List<String> ingredientsFromShoppingList) {
         mISelectedIngredientToListCallback = selectedIngredientToListCallback;
         mCtx = context;
-        mIngredientList = ingredientList;
+        mIngredientList = new ArrayList<>(new HashSet<>(ingredientList));
         mIngredientsFromShoppingList = ingredientsFromShoppingList;
     }
 
