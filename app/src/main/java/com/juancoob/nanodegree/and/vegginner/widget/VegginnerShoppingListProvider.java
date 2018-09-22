@@ -47,11 +47,13 @@ public class VegginnerShoppingListProvider extends AppWidgetProvider {
             appExecutors.getDiskIO().execute(() ->
                     ingredientRepository.updateIngredientFromWidgetShoppingList(ingredientId, !isBought));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_shopping_list);
+            updateWidgetUI(context, appWidgetId);
 
         } else if(Constants.CLEAR_ACTION.equals(intent.getAction())) {
             appExecutors.getDiskIO().execute(() ->
                     ingredientRepository.deleteBoughtIngredientsFromWidgetShoppingList());
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_shopping_list);
+            updateWidgetUI(context, appWidgetId);
         }
         super.onReceive(context, intent);
     }
@@ -60,6 +62,13 @@ public class VegginnerShoppingListProvider extends AppWidgetProvider {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, VegginnerShoppingListProvider.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.lv_shopping_list);
+    }
+
+    public void updateWidgetUI(Context context, int appWidgetId) {
+        Intent intent = new Intent(context.getApplicationContext(), VegginnerShoppingListProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        context.sendBroadcast(intent);
     }
 
     @Override
