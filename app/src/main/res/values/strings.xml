@@ -17,7 +17,9 @@
     <string name="events">Events</string>
 
     <!-- beginning -->
-    <string name="welcome">Welcome to Vegginner! This is a functional prototype which is in development. The available sections are recipes where you could see them, list them as favorites and save some ingredients for the shopping list widget, and places where you could find out what kind of veg-friendly places are around you.</string>
+    <string name="welcome">Welcome to Vegginner! This is a functional prototype which is in development. The available sections are:\n\n* Recipes where you could list them as favorites and save ingredients for the shopping list widget.\n\n* Places where you could find out what kind of veg-friendly places are around you.
+
+</string>
 
     <!-- recipes -->
     <string name="servings">Servings:</string>
@@ -86,7 +88,7 @@
     <string name="here">You are here</string>
     <string name="allow_location">Allow location</string>
     <string name="location_dialog_title">Request location</string>
-    <string name="location_dialog_message">Please, let vegginner locate your device to show veg friendly places near you</string>
+    <string name="location_dialog_message">Please, let vegginner locate your device to show veg-friendly places near you.</string>
     <string name="ok">OK</string>
     <string name="location_format">%1$s,%2$s</string>
     <string name="enable_gps">To continue, please turn on GPS</string>
