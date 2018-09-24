@@ -17,7 +17,7 @@
     <string name="events">Events</string>
 
     <!-- beginning -->
-    <string name="welcome">Welcome to Vegginner! This is a functional prototype which is in development. The available sections are:\n\n* Recipes where you could list them as favorites and save ingredients for the shopping list widget.\n\n* Places where you could find out what kind of veg-friendly places are around you.
+    <string name="welcome">Welcome to Vegginner! This prototype has:\n\n* Recipes where you could list them as favorites. Furthermore, you could save its ingredients for the shopping list widget.\n\n* Places where you could find out what kind of veg-friendly places are around you.
 
 </string>
 
