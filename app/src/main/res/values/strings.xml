@@ -30,6 +30,7 @@
     <string name="steps_provided">Steps author:</string>
     <string name="no_recipes">Sorry! There are no recipes to show</string>
     <string name="no_steps">Sorry! The author removed this recipe</string>
+    <string name="come_back_recipes">Come back to the main list</string>
 
     <!-- recipes menu -->
     <string name="all_recipes">All recipes</string>
