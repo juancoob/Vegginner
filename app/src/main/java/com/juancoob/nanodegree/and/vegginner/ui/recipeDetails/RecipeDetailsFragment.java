@@ -122,6 +122,7 @@ public class RecipeDetailsFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeActionContentDescription(R.string.come_back_recipes);
             actionBar.setTitle(mRecipe.getRecipeName());
         }
     }
