@@ -20,11 +20,10 @@ import java.util.List;
 
 import timber.log.Timber;
 
-import static android.test.MoreAsserts.assertEmpty;
-import static junit.framework.Assert.assertNull;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 
 /**
  * Test class to test the ingredient dao
@@ -104,7 +103,7 @@ public class IngredientDaoTest {
         } catch (InterruptedException exception) {
             Timber.e(exception);
         }
-        assertEmpty(ingredientList);
+        assertThat(ingredientList, is(empty()));
     }
 
     @Test
@@ -118,7 +117,7 @@ public class IngredientDaoTest {
         } catch (InterruptedException exception) {
             Timber.e(exception);
         }
-        assertEmpty(ingredientList);
+        assertThat(ingredientList, is(empty()));
     }
 
     @Test
@@ -132,7 +131,7 @@ public class IngredientDaoTest {
         } catch (InterruptedException exception) {
             Timber.e(exception);
         }
-        assertEmpty(ingredientList);
+        assertThat(ingredientList, is(empty()));
     }
 
     @Test
