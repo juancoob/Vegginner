@@ -3,7 +3,9 @@ package com.juancoob.nanodegree.and.vegginner.ui;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.NavigationView;
+import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -32,6 +34,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * This class is the main activity which manages fragments using a drawer
@@ -58,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private RecipesViewModel mRecipesViewModel;
     private boolean mBackToMainWhenPressBack;
+
+    // Testing
+    private CountingIdlingResource mCountingIdlingResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_recipes:
                 replaceFragmentToActivity(getSupportFragmentManager(), RecipesFragment.getInstance(), R.id.fl_main_content, Constants.RECIPES, false);
+                incrementCountingIdlingResource();
                 break;
             case R.id.nav_places:
                 replaceFragmentToActivity(getSupportFragmentManager(), PlacesFrament.getInstance(), R.id.fl_main_content, Constants.PLACES, false);
@@ -197,5 +204,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initFragmentDetailToReplace() {
         mRecipesViewModel.getFragmentDetailToReplace().setValue(null);
+    }
+
+    @VisibleForTesting
+    public CountingIdlingResource getCountingIdlingResource() {
+        if(mCountingIdlingResource == null) {
+            mCountingIdlingResource = new CountingIdlingResource(MainActivity.class.getName());
+        }
+        return mCountingIdlingResource;
+    }
+
+    @VisibleForTesting
+    public void incrementCountingIdlingResource() {
+        if(getCountingIdlingResource().isIdleNow()) {
+            getCountingIdlingResource().increment();
+            Timber.d("increment idling");
+        }
+    }
+
+    @VisibleForTesting
+    public void decrementCountingIdlingResource() {
+        if(!getCountingIdlingResource().isIdleNow()) {
+            getCountingIdlingResource().decrement();
+            Timber.d("decrement idling");
+        }
     }
 }

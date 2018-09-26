@@ -15,9 +15,10 @@ import com.juancoob.nanodegree.and.vegginner.R;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.local.favoriteRecipe.FavoriteRecipe;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.Recipe;
 import com.juancoob.nanodegree.and.vegginner.data.recipes.remote.SecondRecipeResponse;
+import com.juancoob.nanodegree.and.vegginner.ui.MainActivity;
 import com.juancoob.nanodegree.and.vegginner.util.CheckInternetConnection;
-import com.juancoob.nanodegree.and.vegginner.util.callbacks.IAlertDialogCallback;
 import com.juancoob.nanodegree.and.vegginner.util.NetworkState;
+import com.juancoob.nanodegree.and.vegginner.util.callbacks.IAlertDialogCallback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -112,6 +113,9 @@ public class RecipesListAdapter extends PagedListAdapter<SecondRecipeResponse, R
             } else {
                 CheckInternetConnection.showDialog(RecipesListAdapter.this, mCtx, R.string.no_internet_title, R.string.no_internet_message, R.string.retry, R.string.no);
             }
+        } else if(networkState != null && networkState.getState().equals(NetworkState.Status.SUCCESS)) {
+            // If the list loaded the first page and I'm testing the UI
+            ((MainActivity) mCtx).decrementCountingIdlingResource();
         }
     }
 
