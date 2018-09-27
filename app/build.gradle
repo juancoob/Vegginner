@@ -39,6 +39,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -106,6 +111,9 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_core_version"
     implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_core_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_core_version"
+
+    // Robolectric
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }
 
 // Dependencies for basic libraries required for the google services

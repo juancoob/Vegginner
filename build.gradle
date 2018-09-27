@@ -60,6 +60,7 @@ ext {
     test_version = '1.0.2'
     espresso_core_version = '3.0.2'
     hamcrest_library_version = '1.3'
+    robolectric_version = '4.0-alpha-3'
 }
 
 task clean(type: Delete) {
