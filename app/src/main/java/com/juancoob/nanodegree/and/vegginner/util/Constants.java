@@ -28,6 +28,7 @@ public final class Constants {
     // RecyclerView positions
     public static final String CURRENT_RECIPE_POSITION = "currentFavRecipePosition";
     public static final String CURRENT_INGREDIENT_POSITION = "currentIngredientPosition";
+    public static final String CURRENT_EVENT_POSITION = "currentEventPosition";
 
     // Network states
     public static final String SUCCESS = "success";
