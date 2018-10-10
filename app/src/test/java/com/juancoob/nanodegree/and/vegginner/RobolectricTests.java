@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
  */
 
 @RunWith(RobolectricTestRunner.class)
-public class BeginningTest {
+public class RobolectricTests {
 
     private MainActivity mainActivity;
 
