@@ -95,7 +95,7 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
             servingsTextView.setText(String.valueOf(mRecipe.getRecipeServings()));
             mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
             initRecyclerView(mRecipe.getIngredientList(), mIngredientsFromShoppingList);
-            mRecipesViewModel.getIngredientNameListFromShoppingList().observe(Objects.requireNonNull(getActivity()), ingredientsFromShoppingList -> {
+            mRecipesViewModel.getIngredientNameListFromShoppingList().observe(getViewLifecycleOwner(), ingredientsFromShoppingList -> {
                 if (ingredientsFromShoppingList != null) {
                     mIngredientsFromShoppingList.clear();
                     mIngredientsFromShoppingList.addAll(ingredientsFromShoppingList);
@@ -152,6 +152,6 @@ public class RecipeIngredientsServingsFragment extends Fragment implements ISele
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mRecipesViewModel.getIngredientNameListFromShoppingList().removeObservers(Objects.requireNonNull(getActivity()));
+        mRecipesViewModel.getIngredientNameListFromShoppingList().removeObservers(getViewLifecycleOwner());
     }
 }

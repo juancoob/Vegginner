@@ -105,28 +105,28 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
         mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
         initAllRecipesRecyclerview();
         initFavoriteRecipesRecyclerView();
-        mRecipesViewModel.getOptionSelected().observe(getActivity(), optionSelected -> {
+        mRecipesViewModel.getOptionSelected().observe(getViewLifecycleOwner(), optionSelected -> {
             mOptionSelected = optionSelected;
 
             if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
-                mRecipesViewModel.getSecondRecipeResponsePagedList().observe(getActivity(), secondRecipeResponseList -> {
+                mRecipesViewModel.getSecondRecipeResponsePagedList().observe(getViewLifecycleOwner(), secondRecipeResponseList -> {
                     if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
                         mRecipesListAdapter.submitList(secondRecipeResponseList);
                     }
                 });
-                mRecipesViewModel.getNetworkState().observe(getActivity(), networkState -> {
+                mRecipesViewModel.getNetworkState().observe(getViewLifecycleOwner(), networkState -> {
                     if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
                         mRecipesListAdapter.setNetworkState(networkState);
                     }
                 });
-                mRecipesViewModel.getInitialLoadingLiveData().observe(getActivity(), networkState -> {
+                mRecipesViewModel.getInitialLoadingLiveData().observe(getViewLifecycleOwner(), networkState -> {
                     if (Constants.ALL_RECIPES.equals(mOptionSelected)) {
                         mRecipesListAdapter.checkInitialLoading(networkState);
                     }
                 });
                 recipesRecyclerView.setAdapter(mRecipesListAdapter);
             } else if (Constants.FAV_RECIPES.equals(mOptionSelected)) {
-                mRecipesViewModel.getFavoriteRecipePagedList().observe(getActivity(), favoriteRecipes -> {
+                mRecipesViewModel.getFavoriteRecipePagedList().observe(getViewLifecycleOwner(), favoriteRecipes -> {
                     if (Constants.FAV_RECIPES.equals(mOptionSelected)) {
                         hideProgressBar();
                         if (favoriteRecipes == null || favoriteRecipes.size() == 0) {
@@ -141,7 +141,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
                 recipesRecyclerView.setAdapter(mFavoriteListAdapter);
             }
         });
-        mRecipesViewModel.getFavoriteRecipeListById().observe(Objects.requireNonNull(getActivity()), favoriteElementListById -> {
+        mRecipesViewModel.getFavoriteRecipeListById().observe(getViewLifecycleOwner(), favoriteElementListById -> {
             if (favoriteElementListById != null && favoriteElementListById != mFavoriteElementListById) {
                 mFavoriteElementListById = favoriteElementListById;
                 mRecipesListAdapter.updateFavoriteElementListById(mFavoriteElementListById);
@@ -241,7 +241,7 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
 
     @Override
     public void loadAllListAgain() {
-        mRecipesViewModel.getAgainSecondRecipeResponsePagedList().observe(Objects.requireNonNull(getActivity()), secondRecipeResponses -> {
+        mRecipesViewModel.getAgainSecondRecipeResponsePagedList().observe(getViewLifecycleOwner(), secondRecipeResponses -> {
             if (secondRecipeResponses != null && secondRecipeResponses.size() > 0) {
                 mRecipesListAdapter.submitList(secondRecipeResponses);
             }
@@ -287,8 +287,8 @@ public class RecipesFragment extends Fragment implements IRetryLoadingCallback {
     public void showRecipeDetails(Recipe selectedRecipe) {
         mRecipesViewModel.getFragmentDetailToReplace().setValue(Constants.RECIPE_DETAILS);
         mRecipesViewModel.getSelectedRecipe().setValue(selectedRecipe);
-        mRecipesViewModel.getOptionSelected().removeObservers(Objects.requireNonNull(getActivity()));
-        mRecipesViewModel.getFavoriteRecipeListById().removeObservers(getActivity());
+        mRecipesViewModel.getOptionSelected().removeObservers(getViewLifecycleOwner());
+        mRecipesViewModel.getFavoriteRecipeListById().removeObservers(getViewLifecycleOwner());
     }
 
     @Override

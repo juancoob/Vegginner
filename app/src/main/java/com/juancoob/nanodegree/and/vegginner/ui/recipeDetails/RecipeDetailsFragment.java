@@ -92,7 +92,7 @@ public class RecipeDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
         ButterKnife.bind(this, view);
         mRecipesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), vegginnerViewModelFactory).get(RecipesViewModel.class);
-        mRecipesViewModel.getSelectedRecipe().observe(getActivity(), recipe -> {
+        mRecipesViewModel.getSelectedRecipe().observe(getViewLifecycleOwner(), recipe -> {
             if (getActivity() != null) {
                 mRecipe = recipe;
                 Picasso.get().load(mRecipe.getRecipeImage()).placeholder(R.mipmap.ic_launcher).into(recipeBackdropImageView);
@@ -105,7 +105,7 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     private void ObserveFavoriteRecipeById() {
-        mRecipesViewModel.getFavoriteRecipeById(mRecipe.getRecipeWeb()).observe(Objects.requireNonNull(getActivity()), favoriteRecipe -> {
+        mRecipesViewModel.getFavoriteRecipeById(mRecipe.getRecipeWeb()).observe(getViewLifecycleOwner(), favoriteRecipe -> {
             if (favoriteRecipe != null) {
                 mFavoriteRecipe = favoriteRecipe;
                 favoriteFloatingActionButton.setImageDrawable(ContextCompat.getDrawable(mCtx, R.drawable.ic_starred_24dp));
@@ -137,8 +137,8 @@ public class RecipeDetailsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mRecipesViewModel.getSelectedRecipe().removeObservers(Objects.requireNonNull(getActivity()));
-        mRecipesViewModel.getFavoriteRecipeById(mRecipe.getRecipeWeb()).removeObservers(getActivity());
+        mRecipesViewModel.getSelectedRecipe().removeObservers(getViewLifecycleOwner());
+        mRecipesViewModel.getFavoriteRecipeById(mRecipe.getRecipeWeb()).removeObservers(getViewLifecycleOwner());
     }
 
     @Override

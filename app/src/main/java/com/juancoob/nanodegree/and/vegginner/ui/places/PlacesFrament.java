@@ -357,8 +357,8 @@ public class PlacesFrament extends Fragment implements OnMapReadyCallback,
 
     private void loadResultsBySelectedPlaceType() {
         hideProgressBar();
-        mPlacesViewModel.getPlacePagedList().observe(Objects.requireNonNull(getActivity()), places ->
-                mPlacesViewModel.getIsReady().observe(Objects.requireNonNull(getActivity()), isReady -> {
+        mPlacesViewModel.getPlacePagedList().observe(getViewLifecycleOwner(), places ->
+                mPlacesViewModel.getIsReady().observe(getViewLifecycleOwner(), isReady -> {
                     if (isReady != null && isReady && places != null) {
                         mPlacesListAdapter.submitList(places);
                         if (mCurrentPlacesRecyclerViewState != null) {
@@ -369,9 +369,9 @@ public class PlacesFrament extends Fragment implements OnMapReadyCallback,
                     }
                 })
         );
-        mPlacesViewModel.getInitialLoading().observe(Objects.requireNonNull(getActivity()), initialNetworkState ->
+        mPlacesViewModel.getInitialLoading().observe(getViewLifecycleOwner(), initialNetworkState ->
                 mPlacesListAdapter.checkInitialLoading(initialNetworkState));
-        mPlacesViewModel.getNetworkState().observe(getActivity(), networkState ->
+        mPlacesViewModel.getNetworkState().observe(getViewLifecycleOwner(), networkState ->
                 mPlacesListAdapter.setNetworkState(networkState));
     }
 
@@ -438,10 +438,12 @@ public class PlacesFrament extends Fragment implements OnMapReadyCallback,
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPlacesViewModel.getPlacePagedList().removeObservers(Objects.requireNonNull(getActivity()));
-        mPlacesViewModel.getIsReady().removeObservers(getActivity());
-        mPlacesViewModel.getInitialLoading().removeObservers(getActivity());
-        mPlacesViewModel.getNetworkState().removeObservers(getActivity());
+        mPlacesViewModel.getPlacePagedList().removeObservers(getViewLifecycleOwner());
+        if(mPlacesViewModel.getPlaceDataSourceFactory() != null) {
+            mPlacesViewModel.getIsReady().removeObservers(getViewLifecycleOwner());
+            mPlacesViewModel.getInitialLoading().removeObservers(getViewLifecycleOwner());
+            mPlacesViewModel.getNetworkState().removeObservers(getViewLifecycleOwner());
+        }
     }
 
     @Override

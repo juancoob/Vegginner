@@ -100,4 +100,8 @@ public class PlacesViewModel extends ViewModel {
         return mIsReady;
     }
 
+    public PlaceDataSourceFactory getPlaceDataSourceFactory() {
+        return mPlaceDataSourceFactory;
+    }
+
 }
