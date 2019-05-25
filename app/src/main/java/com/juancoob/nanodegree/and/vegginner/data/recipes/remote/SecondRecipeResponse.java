@@ -51,7 +51,7 @@ public class SecondRecipeResponse implements Parcelable {
         if (obj == this) return true;
         SecondRecipeResponse secondRecipeResponse = (SecondRecipeResponse) obj;
         return secondRecipeResponse.getRecipe().getRecipeWeb()
-                .equals(((SecondRecipeResponse) obj).getRecipe().getRecipeWeb());
+                .equals(this.getRecipe().getRecipeWeb());
     }
 
     public Recipe getRecipe() {
