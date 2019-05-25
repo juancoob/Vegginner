@@ -25,7 +25,7 @@ Usage
 If you want to use Vegginner, you will need:
 - An APP and API key to get recipes from EDAMAM API. So, get them on Edamam's website selecting Recipe Search: https://developer.edamam.com/ and add them on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L24L25).
 - An API key from Google Places API to get veg-friendly places near you. Get It here: https://developers.google.com/places/web-service/get-api-key and put it on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L26).
-- An API key from Google Maps API to locate all Place API results. Get it here: https://developers.google.com/maps/documentation/android-sdk/signup and put it on [Strings resources](https://github.com/juancoob/Vegginner/blob/master/app/src/main/res/values/strings.xml#L105).
+- An API key from Google Maps API to locate all Place API results. Get it here: https://developers.google.com/maps/documentation/android-sdk/signup and put it on [Strings resources](https://github.com/juancoob/Vegginner/blob/master/app/src/main/res/values/strings.xml#L4).
 - The google-services.json file on app folder synchronizing the app using Firebase Crashlytics. Follow these steps: https://firebase.google.com/docs/crashlytics/get-started
 - Create a new keystore and fill these parameters on [gradle from app folder](https://github.com/juancoob/Vegginner/blob/master/app/build.gradle#L14-L21).
 
