@@ -44,10 +44,11 @@ captures/
 .idea/dictionaries
 .idea/libraries
 .idea/caches
+.idea/codeStyles/Project.xml
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
-#*.jks
+*.jks
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -91,6 +92,7 @@ gen-external-apklibs
 
 # Gradle files
 .gradle
+gradlew.bat
 
 # Signing files
 .signing/
@@ -182,6 +184,7 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+app/release/output.json
 
 ### AndroidStudio Patch ###
 
