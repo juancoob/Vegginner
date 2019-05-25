@@ -68,7 +68,7 @@ public class VegginnerUITests {
         onView(withId(R.id.rv_ingredients)).check(matches(hasMinimumChildCount(5)));
 
         // Check title
-        onView(allOf(instanceOf(TextView.class), withParent(withId(R.id.t_recipe_toolbar)))).check(matches(withText(containsString("Vegan Caramel"))));
+        onView(allOf(instanceOf(TextView.class), withParent(withId(R.id.t_recipe_toolbar)))).check(matches(withText(containsString("Vegan"))));
 
         // Go back
         onView((withContentDescription("Come back to the main list"))).perform(click());
