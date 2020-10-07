@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
